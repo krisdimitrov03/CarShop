@@ -1,0 +1,39 @@
+nav.navbar {
+    background-color: white;
+}
+
+.nav-link {
+    font-size: 110%;
+    color: #001E50;
+    font-weight: 600;
+    padding: 0 30px;
+}
+
+.card {
+    display: inline-block;
+    margin: 20px;
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
+/*html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}*/
