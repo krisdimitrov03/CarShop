@@ -17,10 +17,13 @@
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link" aria-current="page" href="#">Stock</a>
+			<a class="nav-link">Stock</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#">Log in</a>
+			<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log in</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
 		</li>
 	}
 </ul>
