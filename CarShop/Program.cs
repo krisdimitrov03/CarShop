@@ -1,5 +1,5 @@
 using CarShop.Core.Constants;
-using CarShop.Data;
+using CarShop.Infrastructure.Data;
 using CarShop.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

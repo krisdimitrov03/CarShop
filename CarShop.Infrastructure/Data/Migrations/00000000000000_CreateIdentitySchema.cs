@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace CarShop.Data.Migrations
+namespace CarShop.Infrastructure.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
