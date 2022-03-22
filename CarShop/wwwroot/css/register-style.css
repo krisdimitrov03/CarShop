@@ -1,0 +1,55 @@
+﻿section.h-100 {
+    height: 100vh !important;
+    background-image: url(../img/login-background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.form-floating label {
+    color: #001E50;
+    font-weight: 400;
+}
+
+input.form-control {
+    border-radius: 0px;
+    border-color: #001E50;
+    font-weight: 400;
+}
+
+input.form-control:focus {
+    border-width: 3px;
+    box-shadow: none;
+}
+
+div.card {
+    border: none;
+    border-radius: 0px !important;
+    box-shadow: 0px 10px 50px 0.5px black
+}
+
+div.card img {
+    border-radius: 0px !important;
+}
+
+button.btn {
+    border: 2px solid transparent;
+    background-color: #001E50;
+    color: white;
+    border-radius: 0px;
+    padding: 0.5rem 3rem;
+}
+
+button.btn:hover {
+    border: 2px solid #001E50;
+    background-color: transparent;
+    color: #001E50;
+}
+
+a#login-here {
+    font-weight: 600;
+}
+
+p#ahac {
+    font-weight: 400;
+}

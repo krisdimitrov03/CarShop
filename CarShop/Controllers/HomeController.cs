@@ -15,6 +15,11 @@ namespace CarShop.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
             return View();
         }
 
