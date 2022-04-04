@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CarShop.Infrastructure.Data.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarShop.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -22,6 +23,7 @@ namespace CarShop.Infrastructure.Data
         public DbSet<DriveTrainType> DriveTrainTypes { get; set; }
         public DbSet<TransmissionType> TransmissionTypes { get; set; }
         public DbSet<DoorConfig> DoorConfigs { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Extra> Extras { get; set; }
