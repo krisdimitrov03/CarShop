@@ -1,4 +1,6 @@
-﻿using CarShop.Infrastructure.Data;
+﻿using CarShop.Core.Contracts;
+using CarShop.Core.Services;
+using CarShop.Infrastructure.Data;
 using CarShop.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +10,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
+            services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>()
+                .AddScoped<IUserService, UserService>();
 
             return services;
         }

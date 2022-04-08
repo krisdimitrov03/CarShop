@@ -1,0 +1,33 @@
+﻿@using CarShop.Core.Models
+@model IEnumerable<UserListViewModel>
+@{
+	ViewData["Title"] = "Manage Users";
+}
+
+@*<div class="row">
+	<div class="col-12">*@
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">User</th>
+					<th scope="col">Email</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var user in Model)
+				{
+					<tr>
+						<td>@user.Name</td>
+						<td>@user.Email</td>
+						<td>
+							<a asp-area="admin" asp-controller="user" asp-action="edit" asp-route-id="@user.Id" type="button" class="btn btn-primary">Edit</a>
+							<a asp-area="admin" asp-controller="user" asp-action="roles" asp-route-id="@user.Id" type="button" class="btn btn-warning">Roles</a>
+							<a asp-area="admin" asp-controller="user" asp-action="delete" asp-route-id="@user.Id" type="button" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+@*	</div>
+</div>*@

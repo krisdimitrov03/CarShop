@@ -1,0 +1,11 @@
+﻿@using CarShop.Core.Models
+@model UserDeleteViewModel
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<form method="post">
+	<h1>Are you sure that you want to remove user @Model.Name from the database?</h1>
+	<button asp-area="Admin" asp-controller="User" asp-action="Delete" type="submit" class="btn btn-danger">Yes</button>
+	<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers" class="btn btn-primary">Cancel</a>
+</form>

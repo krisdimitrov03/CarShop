@@ -1,4 +1,5 @@
-﻿using CarShop.Models;
+﻿using CarShop.Core.Constants;
+using CarShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,9 +16,17 @@ namespace CarShop.Controllers
 
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.IsInRole(UserConstants.Roles.Administrator))
             {
-                return View();
+                return RedirectToAction(nameof(Areas.Admin.Controllers.HomeController.Index),
+                            nameof(Areas.Admin.Controllers.HomeController).Replace("Controller", ""),
+                            new { area = nameof(Areas.Admin) });
+            }
+            else if (User.IsInRole(UserConstants.Roles.Employee))
+            {
+                return RedirectToAction(nameof(Areas.Emp.Controllers.HomeController.Index),
+                            nameof(Areas.Emp.Controllers.HomeController).Replace("Controller", ""),
+                            new { area = nameof(Areas.Emp) });
             }
 
             return View();
