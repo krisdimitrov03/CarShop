@@ -1,0 +1,22 @@
+﻿@using CarShop.Core.Models
+@model IEnumerable<CarCardViewModel>
+@{
+	ViewData["Title"] = "Cars";
+}
+
+<div class="text-center">
+	<h1 class="display-4">All Cars</h1>
+</div>
+@foreach (var car in Model)
+{
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
+		<div class="card-body">
+			<h5>@car.Model</h5>
+			<p class="card-text">@car.Brand</p>
+			<h6 class="card-text">@car.Price</h6>
+			<a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
+			<a class="btn btn-primary">Customize</a>
+		</div>
+	</div>
+}

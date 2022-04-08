@@ -1,0 +1,14 @@
+﻿@using CarShop.Core.Models
+@model CarDetailsViewModel
+@{
+	ViewData["Title"] = "Edit Car";
+}
+
+<img src="@Model.ImageUrl"/>
+<p>Model: @Model.Model</p>
+<p>Height: @Model.Height</p>
+<p>Width: @Model.Width</p>
+<p>Length: @Model.Length</p>
+<p>Weight: @Model.Weight</p>
+<p>Release Year: @Model.ReleaseYear</p>
+<p>Price: @(Model.Price)€</p>

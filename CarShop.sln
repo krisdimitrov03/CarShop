@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarShop.Core", "CarShop.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarShop.Infrastructure", "CarShop.Infrastructure\CarShop.Infrastructure.csproj", "{79050907-7336-4C8F-8DB8-EC28AC892AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarShop.Api", "CarShop.Api\CarShop.Api.csproj", "{5D7B52B3-321E-4E3C-BB3F-862989B720E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarShop.Api", "CarShop.Api\CarShop.Api.csproj", "{5D7B52B3-321E-4E3C-BB3F-862989B720E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D65DAA98-AA8A-4784-8F9E-59AB9BFCE6A3}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
