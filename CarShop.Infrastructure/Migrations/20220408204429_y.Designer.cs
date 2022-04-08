@@ -4,6 +4,7 @@ using CarShop.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarShop.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408204429_y")]
+    partial class y
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,8 +44,9 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Car", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -231,27 +234,6 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.ToTable("EngineTypes");
                 });
 
-            modelBuilder.Entity("CarShop.Infrastructure.Data.Extra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Extras");
-                });
-
             modelBuilder.Entity("CarShop.Infrastructure.Data.FuelType", b =>
                 {
                     b.Property<int>("Id")
@@ -347,11 +329,12 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Image", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -369,12 +352,12 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Order", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
@@ -413,16 +396,10 @@ namespace CarShop.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ExtraId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExtraId");
 
                     b.HasIndex("OrderId");
 
@@ -696,19 +673,11 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.OrdersExtra", b =>
                 {
-                    b.HasOne("CarShop.Infrastructure.Data.Extra", "Extra")
-                        .WithMany()
-                        .HasForeignKey("ExtraId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarShop.Infrastructure.Data.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Extra");
 
                     b.Navigation("Order");
                 });

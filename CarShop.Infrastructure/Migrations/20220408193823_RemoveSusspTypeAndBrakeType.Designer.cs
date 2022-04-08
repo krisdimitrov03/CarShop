@@ -4,6 +4,7 @@ using CarShop.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarShop.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408193823_RemoveSusspTypeAndBrakeType")]
+    partial class RemoveSusspTypeAndBrakeType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,10 +44,14 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Car", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColorId")
                         .HasColumnType("int");
 
                     b.Property<int>("CoupeTypeId")
@@ -83,6 +89,9 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
+                    b.Property<int>("TransmissionTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
@@ -93,6 +102,8 @@ namespace CarShop.Infrastructure.Data.Migrations
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("ColorId");
+
                     b.HasIndex("CoupeTypeId");
 
                     b.HasIndex("DoorConfigId");
@@ -100,6 +111,8 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.HasIndex("DriveTrainTypeId");
 
                     b.HasIndex("EngineId");
+
+                    b.HasIndex("TransmissionTypeId");
 
                     b.ToTable("Cars");
                 });
@@ -239,15 +252,17 @@ namespace CarShop.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<Guid?>("CarId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId");
 
                     b.ToTable("Extras");
                 });
@@ -347,11 +362,12 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Image", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -369,24 +385,15 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Order", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("TransmissionTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -396,37 +403,9 @@ namespace CarShop.Infrastructure.Data.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("ColorId");
-
-                    b.HasIndex("TransmissionTypeId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("CarShop.Infrastructure.Data.OrdersExtra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ExtraId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExtraId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrdersExtras");
                 });
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.TransmissionType", b =>
@@ -595,6 +574,12 @@ namespace CarShop.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarShop.Infrastructure.Data.Color", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CarShop.Infrastructure.Data.CoupeType", "CoupeType")
                         .WithMany()
                         .HasForeignKey("CoupeTypeId")
@@ -619,7 +604,15 @@ namespace CarShop.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarShop.Infrastructure.Data.TransmissionType", "TransmissionType")
+                        .WithMany()
+                        .HasForeignKey("TransmissionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
+
+                    b.Navigation("Color");
 
                     b.Navigation("CoupeType");
 
@@ -628,6 +621,8 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.Navigation("DriveTrainType");
 
                     b.Navigation("Engine");
+
+                    b.Navigation("TransmissionType");
                 });
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Engine", b =>
@@ -652,6 +647,13 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.Navigation("FuelType");
                 });
 
+            modelBuilder.Entity("CarShop.Infrastructure.Data.Extra", b =>
+                {
+                    b.HasOne("CarShop.Infrastructure.Data.Car", null)
+                        .WithMany("Extras")
+                        .HasForeignKey("CarId");
+                });
+
             modelBuilder.Entity("CarShop.Infrastructure.Data.Image", b =>
                 {
                     b.HasOne("CarShop.Infrastructure.Data.Car", null)
@@ -667,18 +669,6 @@ namespace CarShop.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarShop.Infrastructure.Data.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarShop.Infrastructure.Data.TransmissionType", "TransmissionType")
-                        .WithMany()
-                        .HasForeignKey("TransmissionTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarShop.Infrastructure.Data.Identity.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -687,30 +677,7 @@ namespace CarShop.Infrastructure.Data.Migrations
 
                     b.Navigation("Car");
 
-                    b.Navigation("Color");
-
-                    b.Navigation("TransmissionType");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CarShop.Infrastructure.Data.OrdersExtra", b =>
-                {
-                    b.HasOne("CarShop.Infrastructure.Data.Extra", "Extra")
-                        .WithMany()
-                        .HasForeignKey("ExtraId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarShop.Infrastructure.Data.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Extra");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -766,6 +733,8 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Car", b =>
                 {
+                    b.Navigation("Extras");
+
                     b.Navigation("Images");
                 });
 #pragma warning restore 612, 618

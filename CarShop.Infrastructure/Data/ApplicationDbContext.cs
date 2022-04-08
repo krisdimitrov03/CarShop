@@ -17,9 +17,6 @@ namespace CarShop.Infrastructure.Data
         public DbSet<Engine> Engines { get; set; }
         public DbSet<EngineType> EngineTypes { get; set; }
         public DbSet<FuelType> FuelTypes { get; set; }
-        public DbSet<SusspensionType> SusspensionTypes { get; set; }
-        public DbSet<BrakesType> BrakesTypes { get; set; }
-        public DbSet<WheelsType> WheelsTypes { get; set; }
         public DbSet<DriveTrainType> DriveTrainTypes { get; set; }
         public DbSet<TransmissionType> TransmissionTypes { get; set; }
         public DbSet<DoorConfig> DoorConfigs { get; set; }
@@ -27,5 +24,6 @@ namespace CarShop.Infrastructure.Data
         public DbSet<Color> Colors { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Extra> Extras { get; set; }
+        public DbSet<OrdersExtra> OrdersExtras { get; set; }
     }
 }

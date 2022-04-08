@@ -35,11 +35,6 @@ namespace CarShop.Infrastructure.Data
         public int Weight { get; set; }
 
         [Required]
-        public int ColorId { get; set; }
-        [ForeignKey(nameof(ColorId))]
-        public Color Color { get; set; }
-
-        [Required]
         public int CoupeTypeId { get; set; }
         [ForeignKey(nameof(CoupeTypeId))]
         public CoupeType CoupeType { get; set; }
@@ -61,33 +56,12 @@ namespace CarShop.Infrastructure.Data
         public Engine Engine { get; set; }
 
         [Required]
-        public int TransmissionTypeId { get; set; }
-        [ForeignKey(nameof(TransmissionTypeId))]
-        public TransmissionType TransmissionType { get; set; }
-
-        [Required]
         public int DriveTrainTypeId { get; set; }
         [ForeignKey(nameof(DriveTrainTypeId))]
         public DriveTrainType DriveTrainType { get; set; }
 
-        [Required]
-        public int SusspensionTypeId { get; set; }
-        [ForeignKey(nameof(SusspensionTypeId))]
-        public SusspensionType SusspensionType { get; set; }
-
-        [Required]
-        public int BreaksTypeId { get; set; }
-        [ForeignKey(nameof(BreaksTypeId))]
-        public BrakesType BreaksType { get; set; }
-
-        [Required]
-        public int WheelsTypeId { get; set; }
-        [ForeignKey(nameof(WheelsTypeId))]
-        public WheelsType WheelsType { get; set; }
-
         public decimal Price { get; set; }
 
         public IList<Image> Images { get; set; } = new List<Image>();
-        public IList<Extra> Extras { get; set; } = new List<Extra>();
     }
 }
