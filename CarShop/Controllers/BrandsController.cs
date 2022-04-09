@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarShop.Core.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarShop.Controllers
 {
     public class BrandsController : Controller
     {
-        public IActionResult All()
+        private readonly IBrandService service;
+
+        public BrandsController(IBrandService _service)
         {
-            return View();
+            service = _service;
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var brands = await service.GetBrands();
+
+            return View(brands);
         }
     }
 }
