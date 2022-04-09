@@ -1,22 +1,22 @@
 ﻿@using CarShop.Core.Constants
 @using CarShop.Core.Models
-@model IEnumerable<CarCardViewModel>
+@model CarsByBrandViewModel
 @{
-	ViewData["Title"] = "Cars";
+	ViewData["Title"] = $"{Model.BrandName} Cars";
 }
 
 <div class="text-center">
-	<h1 class="display-4">All Cars</h1>
+	<h1 class="display-4">Cars of @Model.BrandName</h1>
 </div>
-@foreach (var car in Model)
+@foreach (var car in Model.Cars)
 {
 	<div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="@car.ImageUrl" style="height: 150px; object-fit: cover;" alt="Card image cap">
+		<img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
 		<div class="card-body">
 			<h5>@car.Model</h5>
 			<p class="card-text">@car.Brand</p>
 			<h6 class="card-text">@car.Price</h6>
-			<a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
+			<a asp-area="" asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
 			<a class="btn btn-primary">Customize</a>
 			@if(User.IsInRole(UserConstants.Roles.Employee))
 			{

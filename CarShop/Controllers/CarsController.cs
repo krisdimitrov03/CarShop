@@ -24,6 +24,13 @@ namespace CarShop.Controllers
             var car = await service.GetCarDetails(id);
 
             return View(car);
-        } 
+        }
+
+        public async Task<IActionResult> ByBrand(string id)
+        {
+            var model = await service.GetCarsByBrand(int.Parse(id));
+
+            return View(model);
+        }
     }
 }

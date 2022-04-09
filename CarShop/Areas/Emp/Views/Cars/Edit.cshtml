@@ -1,0 +1,124 @@
+﻿@using CarShop.Core.Models
+@model CarCreateViewModel
+@{
+	ViewData["Title"] = "Edit Car";
+	var brands = (List<SelectListItem>)ViewBag.Brands;
+	var coupeTypes = (List<SelectListItem>)ViewBag.CoupeTypes;
+	var doorConfigs = (List<SelectListItem>)ViewBag.DoorConfigs;
+	var engines = (List<SelectListItem>)ViewBag.Engines;
+	var driveTrainTypes = (List<SelectListItem>)ViewBag.DriveTrainTypes;
+}
+
+<form method="post">
+	<div class="form-floating mb-3">
+		<div class="form-group">
+			<label>Brand</label>
+			<select name="BrandName" asp-items="@brands" class="form-control">
+				<option value="none">(None)</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Model</label>
+		<div class="col-sm-10">
+			<input asp-for="Model" type="text" class="form-control" id="model" placeholder="Enter model name...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">ReleaseYear</label>
+		<div class="col-sm-10">
+			<input asp-for="ReleaseYear" type="number" class="form-control" id="model" placeholder="Enter car release year...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Height</label>
+		<div class="col-sm-10">
+			<input asp-for="Heigth" type="number" class="form-control" id="model" placeholder="Enter height...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Width</label>
+		<div class="col-sm-10">
+			<input asp-for="Width" type="number" class="form-control" id="model" placeholder="Enter width...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Length</label>
+		<div class="col-sm-10">
+			<input asp-for="Length" type="number" class="form-control" id="model" placeholder="Enter length...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Weight</label>
+		<div class="col-sm-10">
+			<input asp-for="Weight" type="number" class="form-control" id="model" placeholder="Enter weight...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Crash Protection Level</label>
+		<div class="col-sm-10">
+			<input asp-for="CrashProtectionLevel" type="number" class="form-control" id="model" placeholder="Enter crash protection level...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Fuel Consumption</label>
+		<div class="col-sm-10">
+			<input asp-for="FuelConsumption" type="number" class="form-control" id="model" placeholder="Enter fuel consumption...">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="model" class="col-sm-2 col-form-label">Price</label>
+		<div class="col-sm-10">
+			<input asp-for="Price" type="number" class="form-control" id="model" placeholder="Enter price in Euro...">
+		</div>
+	</div>
+
+	<div class="form-floating mb-3">
+		<div class="form-group">
+			<label>Coupe Type</label>
+			<select asp-for="CoupeTypeName" asp-items="@coupeTypes" class="form-control">
+				<option value="none">(None)</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-floating mb-3">
+		<div class="form-group">
+			<label>Door Config</label>
+			<select asp-for="DoorConfigName" asp-items="@doorConfigs" class="form-control">
+				<option value="none">(None)</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-floating mb-3">
+		<div class="form-group">
+			<label>Engine</label>
+			<select asp-for="EngineName" asp-items="@engines" class="form-control">
+				<option value="none">(None)</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-floating mb-3">
+		<div class="form-group">
+			<label>Drive Train Type</label>
+			<select asp-for="DriveTrainTypeName" asp-items="@driveTrainTypes" class="form-control">
+				<option value="none">(None)</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="pt-1 mb-4">
+		<button type="submit" class="btn btn-lg btn-block">Create</button>
+	</div>
+</form>

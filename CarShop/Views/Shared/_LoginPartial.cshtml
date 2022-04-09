@@ -6,10 +6,10 @@
 
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		<a class="nav-link" asp-controller="Cars" asp-action="All">Stock</a>
+		<a class="nav-link" asp-area="" asp-controller="Cars" asp-action="All">Stock</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" asp-controller="Brands" asp-action="All">Brands</a>
+		<a class="nav-link" asp-area="" asp-controller="Brands" asp-action="All">Brands</a>
 	</li>
 
 	@if (SignInManager.IsSignedIn(User))
@@ -26,6 +26,12 @@
 				<a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="ManageUsers">Manage Users</a>
 			</li>
 		}
+		@if (User.IsInRole(UserConstants.Roles.Employee))
+		{
+			<li class="nav-item">
+				<a class="nav-link text-dark" asp-area="Emp" asp-controller="Cars" asp-action="Create">Create Car</a>
+			</li>
+		}
 
 		<li class="nav-item">
 			<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -35,6 +41,12 @@
 	}
 	else
 	{
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
+		</li>
 		<li class="nav-item">
 			<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log in</a>
 		</li>

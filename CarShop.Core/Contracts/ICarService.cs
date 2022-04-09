@@ -12,5 +12,8 @@ namespace CarShop.Core.Contracts
     {
         Task<IEnumerable<CarCardViewModel>> GetAll();
         Task<CarDetailsViewModel> GetCarDetails(string carId);
+        Task<DbInfoViewModel> GetCreateDisplayInfo();
+        Task<CarCreateViewModel> GetCarForEdit(string carId);
+        Task<CarsByBrandViewModel> GetCarsByBrand(int brandId);
     }
 }
