@@ -54,7 +54,7 @@ namespace CarShop.Areas.Admin.Controllers
 
             if (await service.UpdateUser(model))
             {
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction(nameof(ManageUsers));
             }
 
             return View(model);
@@ -73,13 +73,28 @@ namespace CarShop.Areas.Admin.Controllers
             ViewBag.RoleItems = roleManager.Roles
                 .ToList()
                 .Select(r => new SelectListItem()
-                 {
-                     Text = r.Name,
-                     Value = r.Id,
-                     Selected = userManager.IsInRoleAsync(user, r.Name).Result
-                 });
+                {
+                    Text = r.Name,
+                    Value = r.Name,
+                    Selected = userManager.IsInRoleAsync(user, r.Name).Result
+                }).ToList();
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Roles(UserRolesViewModel model)
+        {
+            var user = await service.GetUserById(model.UserId);
+            var userRoles = await userManager.GetRolesAsync(user);
+            await userManager.RemoveFromRolesAsync(user, userRoles);
+
+            if (model.RoleNames?.Length > 0)
+            {
+                await userManager.AddToRolesAsync(user, model.RoleNames);
+            }
+
+            return RedirectToAction(nameof(ManageUsers));
         }
 
         public async Task<IActionResult> Delete(string id)
@@ -98,9 +113,9 @@ namespace CarShop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(UserDeleteViewModel model)
         {
-            if(await service.DeleteUser(model.Id))
+            if (await service.DeleteUser(model.Id))
             {
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction(nameof(ManageUsers));
             }
 
             else return View(model);

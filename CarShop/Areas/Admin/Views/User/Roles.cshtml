@@ -2,20 +2,18 @@
 @model UserRolesViewModel
 @{
 	ViewData["Title"] = "User Roles";
+	var items = (List<SelectListItem>)ViewBag.RoleItems;
 }
 
 <form method="post">
+	<input type="hidden" name="UserId" value="@Model.UserId"/>
 	<div class="form-floating mb-3">
 		<h4>@Html.DisplayFor(m => m.Name)</h4>
 	</div>
 	<div class="form-floating mb-3">
 		<div class="form-group">
 			<label>User Roles</label>
-			<select asp-for="RoleIds" multiple="" class="form-control">
-				@foreach (var role in (IEnumerable<SelectListItem>)ViewBag.RoleItems)
-				{	
-					<option value="@role.Value" selected="@(role.Selected ? "selected" : "")">@role.Text</option>
-				}
+			<select asp-for="RoleNames" asp-items="@items" multiple="" class="form-control">
 			</select>
 		</div>
 	</div>

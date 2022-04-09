@@ -5,6 +5,13 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="nav justify-content-end">
+	<li class="nav-item">
+		<a class="nav-link" asp-controller="Cars" asp-action="All">Stock</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" asp-controller="Brands" asp-action="All">Brands</a>
+	</li>
+
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
@@ -28,12 +35,6 @@
 	}
 	else
 	{
-		<li class="nav-item">
-			<a class="nav-link" asp-controller="Cars" asp-action="All">Stock</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" asp-controller="Brands" asp-action="All">Brands</a>
-		</li>
 		<li class="nav-item">
 			<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log in</a>
 		</li>
