@@ -131,5 +131,23 @@ namespace CarShop.Core.Services
                 DriveTrainTypes = driveTrainTypes
             };
         }
-	}
+
+        public async Task<CarCardViewModel> GetById(string carId)
+        {
+            return await repo.All<Car>()
+                .Where(c => c.Id == Guid.Parse(carId))
+                .Include(c => c.Brand)
+                .Include(c => c.Images)
+                .Select(c => new CarCardViewModel()
+                {
+                    Id = c.Id.ToString(),
+                    Brand = c.Brand.Name,
+                    Model = c.Model,
+                    Price = c.Price.ToString(),
+                    ImageUrl = c.Images
+                    .FirstOrDefault(i => i.IsProfile == true).ImageUrl
+                })
+                .FirstOrDefaultAsync();
+        }
+    }
 }

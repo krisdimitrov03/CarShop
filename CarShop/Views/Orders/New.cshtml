@@ -1,0 +1,42 @@
+﻿@using CarShop.Core.Models
+@model OrderCreateViewModel
+@{
+	ViewData["Title"] = "Customize";
+	var colors = (List<SelectListItem>)ViewBag.Colors;
+	var transmissionTypes = (List<SelectListItem>)ViewBag.TransmissionTypes;
+	var extras = (List<SelectListItem>)ViewBag.Extras;
+}
+
+<form method="post">
+	<input type="hidden" asp-for="CarId" />
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top" src="@Model.CarImageUrl">
+		<div class="card-body">
+			<h5 class="card-title">@Model.Car</h5>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label>Color</label>
+		<select asp-for="ColorId" asp-items="@colors" class="form-control">
+			<option value="none">(None)</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label>Transmission Type</label>
+		<select asp-for="TransmissionTypeId" asp-items="@transmissionTypes" class="form-control">
+			<option value="none">(None)</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label>Extras</label>
+		<select asp-for="ExtraIds" asp-items="@extras" class="form-control">
+		</select>
+	</div>
+
+	<div style="display: inline-block" class="pt-1 mb-4">
+		<button type="submit" class="btn btn-lg btn-block">Order</button>
+	</div>
+</form>

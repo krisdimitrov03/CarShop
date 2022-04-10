@@ -1,5 +1,6 @@
 ﻿using CarShop.Core.Models;
 using CarShop.Infrastructure.Data.Identity;
+using System.Security.Claims;
 
 namespace CarShop.Core.Contracts
 {

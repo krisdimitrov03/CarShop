@@ -1,7 +1,33 @@
-﻿@{
+﻿@using CarShop.Core.Models
+@model IEnumerable<OrderListViewModel>
+@{
 	ViewData["Title"] = "My Orders";
 }
 
 <div class="text-center">
 	<h1 class="display-4">My Orders</h1>
 </div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Car</th>
+      <th scope="col">Color</th>
+      <th scope="col">Transmission</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var order in Model)
+    {   
+        <tr>
+          <td scope="row">@order.Date</td>
+          <td>@order.CarBrand @order.CarModel</td>
+          <td>@order.Color</td>
+          <td>@order.TransmissionType</td>
+          <td>€@order.Price</td>
+        </tr>
+    }
+  </tbody>
+</table>

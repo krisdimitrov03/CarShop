@@ -30,9 +30,18 @@ namespace CarShop.Infrastructure.Data
         public Car Car { get; set; }
 
         [Required]
-        public decimal TotalPrice 
-        { 
-            get { return this.Car.Price; } 
-        }
+        public int ColorId { get; set; }
+
+        [ForeignKey(nameof(ColorId))]
+        public Color Color { get; set; }
+
+        [Required]
+        public int TransmissionTypeId { get; set; }
+
+        [ForeignKey(nameof(TransmissionTypeId))]
+        public TransmissionType TransmissionType { get; set; }
+
+        [Required]
+        public decimal TotalPrice { get; set; }
     }
 }

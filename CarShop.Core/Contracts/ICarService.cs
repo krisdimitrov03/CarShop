@@ -15,5 +15,6 @@ namespace CarShop.Core.Contracts
         Task<DbInfoViewModel> GetCreateDisplayInfo();
         Task<CarCreateViewModel> GetCarForEdit(string carId);
         Task<CarsByBrandViewModel> GetCarsByBrand(int brandId);
+        Task<CarCardViewModel> GetById(string carId);
     }
 }

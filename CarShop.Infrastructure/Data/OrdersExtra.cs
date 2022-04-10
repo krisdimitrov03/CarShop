@@ -9,9 +9,9 @@ namespace CarShop.Infrastructure.Data
         public int Id { get; set; }
 
         [Required]
-        public Guid CarId { get; set; }
-        [ForeignKey(nameof(CarId))]
-        public Car Car { get; set; }
+        public Guid OrderId { get; set; }
+        [ForeignKey(nameof(OrderId))]
+        public Order Order { get; set; }
 
         [Required]
         public int ExtraId { get; set; }
