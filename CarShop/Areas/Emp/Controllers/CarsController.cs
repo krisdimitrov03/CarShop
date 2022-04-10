@@ -1,5 +1,6 @@
 ﻿using CarShop.Core.Contracts;
 using CarShop.Core.Models;
+using CarShop.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -67,32 +68,49 @@ namespace CarShop.Areas.Emp.Controllers
                     Selected = false
                 }).ToList();
 
-            var model = new CarCreateViewModel()
-            {
-                BrandName = "Volkswagen",
-                Model = "Golf 6",
-                CoupeTypeName = "Coupe",
-                CrashProtectionLevel = (8.4).ToString(),
-                DoorConfigName = "2/3",
-                DriveTrainTypeName = "FWD",
-                EngineName = "1.9 TDI",
-                FuelConsumption = 9.ToString(),
-                ReleaseYear = 2017.ToString(),
-                Heigth = 1.ToString(),
-                Width = 2.ToString(),
-                Length = 5.ToString(),
-                Weight = 1250.ToString(),
-                Price = 27000.ToString(),
-                ImageUrls = new string[] { "no-url" }
-            };
-
-            return View(model);
+            return View(new CarCreateViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CarCreateViewModel model)
+        public async Task<IActionResult> Create(CarCreateViewModel returnedModel)
         {
-            return Ok(model);
+            var profileImage = new Image()
+            {
+                ImageUrl = returnedModel.ProfileImageUrl,
+                IsProfile = true
+            };
+
+            await service.CreateImagesForCar(profileImage);
+
+            Car car = new Car()
+            {
+                BrandId = int.Parse(returnedModel.BrandId),
+                CoupeTypeId = int.Parse(returnedModel.CoupeTypeId),
+                CrashProtectionLevel = double.Parse(returnedModel.CrashProtectionLevel),
+                DoorConfigId = int.Parse(returnedModel.DoorConfigId),
+                DriveTrainTypeId = int.Parse(returnedModel.DriveTrainTypeId),
+                EngineId = int.Parse(returnedModel.EngineId),
+                FuelConsumption = double.Parse(returnedModel.FuelConsumption),
+                Height = int.Parse(returnedModel.Heigth),
+                Width = int.Parse(returnedModel.Width),
+                Length = int.Parse(returnedModel.Length),
+                Weight = int.Parse(returnedModel.Weight),
+                Model = returnedModel.Model,
+                ReleaseYear = int.Parse(returnedModel.ReleaseYear),
+                Price = decimal.Parse(returnedModel.Price),
+                Images = new List<Image>()
+            };
+
+            car.Images.Add(profileImage);
+
+            if(await service.CreateCar(car))
+            {
+                return RedirectToAction(nameof(CarShop.Controllers.CarsController.All),
+                    nameof(CarShop.Controllers.CarsController).Replace("Controller", ""),
+                    new { area="" });
+            }
+
+            return View();
         }
 
         public async Task<IActionResult> Edit(string id)
@@ -107,7 +125,7 @@ namespace CarShop.Areas.Emp.Controllers
                 {
                     Text = n.Name,
                     Value = n.Id.ToString(),
-                    Selected = n.Id.ToString() == model.BrandName
+                    Selected = n.Id.ToString() == model.BrandId
                 }).ToList();
 
             ViewBag.CoupeTypes = data.CoupeTypes
@@ -116,7 +134,7 @@ namespace CarShop.Areas.Emp.Controllers
                 {
                     Text = n.Name,
                     Value = n.Id.ToString(),
-                    Selected = n.Id.ToString() == model.CoupeTypeName
+                    Selected = n.Id.ToString() == model.CoupeTypeId
                 }).ToList();
 
             ViewBag.DoorConfigs = data.DoorConfigs
@@ -125,7 +143,7 @@ namespace CarShop.Areas.Emp.Controllers
                 {
                     Text = n.Name,
                     Value = n.Id.ToString(),
-                    Selected = n.Id.ToString() == model.DoorConfigName
+                    Selected = n.Id.ToString() == model.DoorConfigId
                 }).ToList();
 
             ViewBag.Engines = data.Engines
@@ -134,7 +152,7 @@ namespace CarShop.Areas.Emp.Controllers
                 {
                     Text = $"{n.EngineType.Name} - {n.HorsePower}hp",
                     Value = n.Id.ToString(),
-                    Selected = n.Id.ToString() == model.EngineName
+                    Selected = n.Id.ToString() == model.EngineId
                 }).ToList();
 
             ViewBag.DriveTrainTypes = data.DriveTrainTypes
@@ -143,16 +161,42 @@ namespace CarShop.Areas.Emp.Controllers
                 {
                     Text = n.Name,
                     Value = n.Id.ToString(),
-                    Selected = n.Id.ToString() == model.DriveTrainTypeName
+                    Selected = n.Id.ToString() == model.DriveTrainTypeId
                 }).ToList();
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(CarCreateViewModel model)
+        public async Task<IActionResult> Edit(CarCreateViewModel returnedModel)
         {
-            return Ok(model);
+            var (result, id) = await service.Update(returnedModel);
+            return RedirectToAction(nameof(CarShop.Controllers.CarsController.Details),
+                            nameof(CarShop.Controllers.CarsController).Replace("Controller", ""),
+                            new { area = "", id = id });
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var car = await service.GetById(id);
+
+            return View(car);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(CarCardViewModel returnedModel)
+        {
+            var id = Guid.Parse(returnedModel.Id);
+
+            if (await service.RemoveCar(id))
+            {
+                return RedirectToAction(nameof(CarShop.Controllers.CarsController.All),
+                    nameof(CarShop.Controllers.CarsController).Replace("Controller", ""),
+                    new { area = "" });
+            }
+            else return RedirectToAction(nameof(CarShop.Controllers.CarsController.Details),
+                    nameof(CarShop.Controllers.CarsController).Replace("Controller", ""),
+                    new { area = "", id = returnedModel.Id });
         }
     }
 }

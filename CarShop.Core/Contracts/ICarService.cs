@@ -16,5 +16,10 @@ namespace CarShop.Core.Contracts
         Task<CarCreateViewModel> GetCarForEdit(string carId);
         Task<CarsByBrandViewModel> GetCarsByBrand(int brandId);
         Task<CarCardViewModel> GetById(string carId);
+        Task<bool> CreateCar(Car car);
+        Task<bool> RemoveCar(Guid? carId);
+        Task<bool> CreateImagesForCar(List<Image> images);
+        Task<bool> CreateImagesForCar(Image image);
+        Task<(bool, string)> Update(CarCreateViewModel returnedModel);
     }
 }

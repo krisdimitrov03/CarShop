@@ -1,0 +1,18 @@
+﻿@using CarShop.Core.Models
+@model CarCardViewModel
+@{
+	ViewData["Title"] = "Delete Car";
+}
+
+<form method="post">
+	<h1>Are you sure that you want to remove this car from the database?</h1>
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top" src="@Model.ImageUrl" style="height: 150px; object-fit: cover;" alt="Card image cap">
+		<div class="card-body">
+			<h5>@Model.Brand @Model.Model</h5>
+		</div>
+	</div>
+
+	<button asp-area="Emp" asp-controller="Cars" asp-action="Delete" type="submit" class="btn btn-danger">Yes</button>
+	<a asp-area="" asp-controller="Cars" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Cancel</a>
+</form>

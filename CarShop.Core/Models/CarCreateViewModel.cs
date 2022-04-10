@@ -2,7 +2,8 @@
 {
 	public class CarCreateViewModel
 	{
-		public string BrandName { get; set; }
+        public string Id { get; set; }
+        public string BrandId { get; set; }
 
 		public string Model { get; set; }
 
@@ -16,20 +17,22 @@
 
 		public string Weight { get; set; }
 
-		public string CoupeTypeName { get; set; }
+		public string CoupeTypeId { get; set; }
 
-		public string DoorConfigName { get; set; }
+		public string DoorConfigId { get; set; }
 
 		public string CrashProtectionLevel { get; set; }
 
 		public string FuelConsumption { get; set; }
 
-		public string EngineName { get; set; }
+		public string EngineId { get; set; }
 
-		public string DriveTrainTypeName { get; set; }
+		public string DriveTrainTypeId { get; set; }
 
 		public string Price { get; set; }
 
 		public string[] ImageUrls { get; set; }
-	}
+
+        public string ProfileImageUrl { get; set; }
+    }
 }
