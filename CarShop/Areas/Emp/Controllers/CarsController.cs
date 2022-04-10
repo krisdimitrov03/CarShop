@@ -67,7 +67,26 @@ namespace CarShop.Areas.Emp.Controllers
                     Selected = false
                 }).ToList();
 
-            return View(new CarCreateViewModel());
+            var model = new CarCreateViewModel()
+            {
+                BrandName = "Volkswagen",
+                Model = "Golf 6",
+                CoupeTypeName = "Coupe",
+                CrashProtectionLevel = (8.4).ToString(),
+                DoorConfigName = "2/3",
+                DriveTrainTypeName = "FWD",
+                EngineName = "1.9 TDI",
+                FuelConsumption = 9.ToString(),
+                ReleaseYear = 2017.ToString(),
+                Heigth = 1.ToString(),
+                Width = 2.ToString(),
+                Length = 5.ToString(),
+                Weight = 1250.ToString(),
+                Price = 27000.ToString(),
+                ImageUrls = new string[] { "no-url" }
+            };
+
+            return View(model);
         }
 
         [HttpPost]

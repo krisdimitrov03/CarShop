@@ -17,8 +17,13 @@
 			<p class="card-text">@car.Brand</p>
 			<h6 class="card-text">@car.Price</h6>
 			<a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary">Details</a>
-			<a class="btn btn-primary">Customize</a>
-			@if(User.IsInRole(UserConstants.Roles.Employee))
+
+			@if (!User.IsInRole(UserConstants.Roles.Employee) && !User.IsInRole(UserConstants.Roles.Administrator))
+			{
+				<a asp-controller="Orders" asp-action="New" asp-route-id="@car.Id" class="btn btn-primary">Customize</a>
+			}
+
+			@if (User.IsInRole(UserConstants.Roles.Employee) || User.IsInRole(UserConstants.Roles.Administrator))
 			{
 				<a asp-area="Emp" asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
 			}
