@@ -80,7 +80,16 @@ namespace CarShop.Areas.Emp.Controllers
                 IsProfile = true
             };
 
+            var otherImages = returnedModel.ImageUrls
+                .Split(" || ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(url => new Image()
+                {
+                    ImageUrl = url,
+                    IsProfile = false
+                }).ToList();
+
             await service.CreateImagesForCar(profileImage);
+            await service.CreateImagesForCar(otherImages);
 
             Car car = new Car()
             {
@@ -98,16 +107,16 @@ namespace CarShop.Areas.Emp.Controllers
                 Model = returnedModel.Model,
                 ReleaseYear = int.Parse(returnedModel.ReleaseYear),
                 Price = decimal.Parse(returnedModel.Price),
-                Images = new List<Image>()
+                Images = new List<Image>(otherImages)
             };
 
             car.Images.Add(profileImage);
 
-            if(await service.CreateCar(car))
+            if (await service.CreateCar(car))
             {
                 return RedirectToAction(nameof(CarShop.Controllers.CarsController.All),
                     nameof(CarShop.Controllers.CarsController).Replace("Controller", ""),
-                    new { area="" });
+                    new { area = "" });
             }
 
             return View();

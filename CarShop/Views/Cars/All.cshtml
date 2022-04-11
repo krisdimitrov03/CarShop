@@ -1,14 +1,54 @@
 ﻿@using CarShop.Core.Constants
 @using CarShop.Core.Models
-@model IEnumerable<CarCardViewModel>
+@model IEnumerable<CarFilterViewModel>
 @{
 	ViewData["Title"] = "Cars";
+	var coupeTypes = (List<SelectListItem>)ViewBag.CoupeTypes;
+	var doorConfigs = (List<SelectListItem>)ViewBag.DoorConfigs;
+	var fuelTypes = (List<SelectListItem>)ViewBag.FuelTypes;
 }
 
 <div class="text-center">
 	<h1 class="display-4">All Cars</h1>
 </div>
-@foreach (var car in Model)
-{
-	@await Html.PartialAsync("_CarCardPartial", car)
-}
+
+<div class="aside" style="float: left;">
+	<h3>Filter</h3>
+
+	<h5>Release Year</h5>
+
+	<h5>Horse Power</h5>
+
+	<h5>Fuel Type</h5>
+	<ul>
+		@foreach (var ft in fuelTypes)
+		{
+			<li><a href="?fuelType=@ft.Value">@ft.Text</a></li>
+		}
+	</ul>
+
+	<h5>Coupe Type</h5>
+	<ul>
+		@foreach (var ct in coupeTypes)
+		{
+			<li><a href="?coupeType=@ct.Value">@ct.Text</a></li>
+		}
+	</ul>
+
+	<h5>Door Config</h5>
+	<ul>
+		@foreach (var dc in doorConfigs)
+		{
+			<li><a href="?doorConfig=@dc.Value">@dc.Text</a></li>
+		}
+	</ul>
+
+	<h5>Price</h5>
+</div>
+
+<div class="text-center">
+	@foreach (var car in Model)
+	{
+		@await Html.PartialAsync("_CarCardPartial", car)
+	}
+</div>

@@ -9,13 +9,43 @@
 	var driveTrainTypes = (List<SelectListItem>)ViewBag.DriveTrainTypes;
 }
 
+<style>
+	#images img {
+		height: 150px;
+	}
+
+	#images div {
+		display: inline-block;
+	}
+
+	#images .remove-img-btn {
+		position: relative;
+		left: -40px;
+	}
+</style>
+
 <form method="post">
-	<input type="hidden" asp-for="Id"/>
+	<input type="hidden" asp-for="Id" />
 	<div class="form-floating mb-3">
 		<div style="display: inline-block" class="form-group row">
 			<label for="piu" class="col-sm-2 col-form-label">ProfileImageUrl</label>
 			<div class="col-sm-10">
 				<input asp-for="ProfileImageUrl" type="text" class="form-control" id="piu" placeholder="Enter profile image url...">
+			</div>
+		</div>
+
+		<div style="display: inline-block" class="form-group row">
+			<input type="hidden" asp-for="ImageUrls" id="submitUrls">
+
+			<input type="text" name="" id="imageUrls">
+			<span id="add-img">Add</span>
+
+			<div id="images">
+				@foreach (var url in Model.Urls)
+				{
+					@await Html.PartialAsync("_ImagesForCarEditPartial", url)
+					;
+				}
 			</div>
 		</div>
 
@@ -130,3 +160,7 @@
 		<button type="submit" class="btn btn-lg btn-block">Create</button>
 	</div>
 </form>
+
+@section Scripts {
+	<partial name="_CarCreateEditScriptsPartial"/>
+}

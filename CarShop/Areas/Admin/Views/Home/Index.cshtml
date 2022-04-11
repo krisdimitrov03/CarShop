@@ -2,6 +2,72 @@
 	ViewData["Title"] = "Home Page of Admin area";
 }
 
-<div class="text-center">
-	<h1 class="display-4">Welcome to Admin area!</h1>
-</div>
+@*<div class="text-center">
+	<div class="table">
+		<table class="table">
+			<thead class="thead">
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Car</th>
+					<th scope="col">Color</th>
+					<th scope="col">Transmission</th>
+					<th scope="col">Total Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var order in Model.Orders)
+				{
+					<tr>
+						<td scope="row">@order.Date</td>
+						<td>@order.CarBrand @order.CarModel</td>
+						<td>@order.Color</td>
+						<td>@order.TransmissionType</td>
+						<td>€@order.Price</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="table" style="display: inline;">
+		<table class="table" style="width: 400px;">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Car</th>
+					<th scope="col">Color</th>
+					<th scope="col">Transmission</th>
+					<th scope="col">Total Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td scope="row">Yes</td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>€54325</td>
+				</tr>
+
+				<tr>
+					<td scope="row">Yes</td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>Yes</td>
+					<td>€54325</td>
+				</tr>
+
+				foreach (var order in Model)
+					{
+					<tr>
+					<td scope="row">@order.Date</td>
+					<td>@order.CarBrand @order.CarModel</td>
+					<td>@order.Color</td>
+					<td>@order.TransmissionType</td>
+					<td>€@order.Price</td>
+					</tr>
+					}
+			</tbody>
+		</table>
+	</div>
+</div>*@

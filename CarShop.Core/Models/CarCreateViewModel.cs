@@ -31,7 +31,16 @@
 
 		public string Price { get; set; }
 
-		public string[] ImageUrls { get; set; }
+		public string ImageUrls { get; set; }
+
+		public string[] Urls
+		{
+			get
+			{
+				if(ImageUrls == null) return new string[0];
+				else return ImageUrls.Split(" || ", StringSplitOptions.RemoveEmptyEntries);
+			}
+		}
 
         public string ProfileImageUrl { get; set; }
     }

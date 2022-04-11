@@ -4,6 +4,6 @@
     {
         public string BrandName { get; set; }
 
-        public IEnumerable<CarCardViewModel> Cars { get; set; }
+        public IEnumerable<CarFilterViewModel> Cars { get; set; }
     }
 }

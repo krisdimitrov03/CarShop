@@ -10,6 +10,8 @@ namespace CarShop.Core.Contracts
 {
     public interface ICarService
     {
+        Task<FilterDataViewModel> GetFilterData();
+        Task<IEnumerable<CarFilterViewModel>> All();
         Task<IEnumerable<CarCardViewModel>> GetAll();
         Task<CarDetailsViewModel> GetCarDetails(string carId);
         Task<DbInfoViewModel> GetCreateDisplayInfo();

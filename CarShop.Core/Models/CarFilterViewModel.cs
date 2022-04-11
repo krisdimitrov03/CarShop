@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarShop.Core.Models
 {
-    public class CarCardViewModel
+    public class CarFilterViewModel
     {
         public string Id { get; set; }
 
@@ -17,5 +17,15 @@ namespace CarShop.Core.Models
         public string Model { get; set; }
 
         public string Price { get; set; }
+
+        public string ReleaseYear { get; set; }
+
+        public string HorsePower { get; set; }
+
+        public string FuelType { get; set; }
+
+        public string CoupeType { get; set; }
+
+        public string DoorConfig { get; set; }
     }
 }

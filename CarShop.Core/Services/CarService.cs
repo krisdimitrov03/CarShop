@@ -26,7 +26,7 @@ namespace CarShop.Core.Services
             var cars = await repo.All<Car>()
                 .Where(c => c.BrandId == brandId)
                 .Include(c => c.Images)
-                .Select(c => new CarCardViewModel()
+                .Select(c => new CarFilterViewModel()
                 {
                     Id = c.Id.ToString(),
                     Brand = c.Brand.Name,
@@ -54,6 +54,28 @@ namespace CarShop.Core.Services
                     Price = c.Price.ToString(),
                     ImageUrl = c.Images
                     .FirstOrDefault(i => i.IsProfile == true).ImageUrl
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<CarFilterViewModel>> All()
+        {
+            return await repo.All<Car>()
+                .Include(c => c.Images)
+                .Include(c => c.Engine)
+                .ThenInclude(e => e.EngineType)
+                .Select(c => new CarFilterViewModel()
+                {
+                    Id= c.Id.ToString(),
+                    Brand = c.BrandId.ToString(),
+                    ImageUrl = c.Images.FirstOrDefault(i => i.IsProfile).ImageUrl,
+                    Model= c.Model,
+                    ReleaseYear = c.ReleaseYear.ToString(),
+                    HorsePower = c.Engine.HorsePower.ToString(),
+                    FuelType = c.Engine.EngineType.FuelTypeId.ToString(),
+                    CoupeType = c.CoupeTypeId.ToString(),
+                    DoorConfig = c.DoorConfigId.ToString(),
+                    Price= c.Price.ToString()
                 })
                 .ToListAsync();
         }
@@ -102,7 +124,7 @@ namespace CarShop.Core.Services
                     DriveTrainTypeId = c.DriveTrainTypeId.ToString(),
                     Price = c.Price.ToString(),
                     ProfileImageUrl = c.Images.FirstOrDefault(i => i.IsProfile).ImageUrl,
-                    ImageUrls = c.Images.Where(i => !i.IsProfile).Select(i => i.ImageUrl).ToArray()
+                    ImageUrls = string.Join(" || ", c.Images.Where(i => !i.IsProfile).Select(i => i.ImageUrl).ToArray())
                 })
                 .FirstOrDefaultAsync();
         }
@@ -269,14 +291,59 @@ namespace CarShop.Core.Services
                 car.EngineId = int.Parse(returnedModel.EngineId);
                 car.DriveTrainTypeId = int.Parse(returnedModel.DriveTrainTypeId);
                 car.Price = decimal.Parse(returnedModel.Price);
-                car.Images
-                    .FirstOrDefault(i => i.IsProfile).ImageUrl = returnedModel.ProfileImageUrl;
+
+                repo.DeleteRange(car.Images);
+
+                var profileImage = new Image()
+                {
+                    ImageUrl = returnedModel.ProfileImageUrl,
+                    IsProfile = true
+                };
+
+                await repo.AddAsync(profileImage);
+
+                if(returnedModel.Urls.Length > 0)
+                {
+                    var otherImages = returnedModel.Urls
+                        .Select(n => new Image()
+                        {
+                            ImageUrl = n,
+                            IsProfile = false
+                        }).ToList();
+
+                    await repo.AddRangeAsync(otherImages);
+                    await repo.SaveChangesAsync();
+
+                    car.Images = new List<Image>(otherImages);
+                }
+
+                car.Images.Add(profileImage);
 
                 await repo.SaveChangesAsync();
+
                 return (true,car.Id.ToString());
             }
 
             return (false, car.Id.ToString());
+        }
+
+        public async Task<FilterDataViewModel> GetFilterData()
+        {
+            var fuelTypes = await repo.All<FuelType>()
+                .ToArrayAsync();
+
+            var coupeTypes = await repo.All<CoupeType>()
+                .ToArrayAsync();
+
+            var doorConfigs = await repo.All<DoorConfig>()
+                .ToArrayAsync();
+
+            return new FilterDataViewModel()
+            {
+                FuelTypes = fuelTypes,
+                DoorConfigs = doorConfigs,
+                CoupeTypes = coupeTypes
+            };
         }
     }
 }
