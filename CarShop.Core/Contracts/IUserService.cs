@@ -15,5 +15,7 @@ namespace CarShop.Core.Contracts
         Task<ApplicationUser> GetUserById(string id);
 
         Task<bool> DeleteUser(string id);
+        Task<IEnumerable<UserListViewModel>> GetEmployees();
+        Task<IEnumerable<UserListViewModel>> GetClients();
     }
 }

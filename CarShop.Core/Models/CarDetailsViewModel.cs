@@ -12,6 +12,10 @@ namespace CarShop.Core.Models
 
         public string ImageUrl { get; set; }
 
+        public string[] OtherImagesUrls { get; set; }
+
+        public string Brand { get; set; }
+
         public string Model { get; set; }
 
         public decimal Price { get; set; }

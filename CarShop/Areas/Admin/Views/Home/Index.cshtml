@@ -1,8 +1,30 @@
-﻿@{
+﻿@using CarShop.Core.Models
+@model AdminDashboardViewModel
+@{
 	ViewData["Title"] = "Home Page of Admin area";
 }
 
-@*<div class="text-center">
+<div class="text-center">
+	<h1 class="display-4">Dashboard</h1>
+</div>
+
+<div class="text-center">
+	<div class="card">
+		<h5 class="card-header">Total Income</h5>
+		<div class="card-body">
+			<h5 class="card-title">€@Model.TotalIncome</h5>
+		</div>
+	</div>
+
+	<div class="card">
+		<h5 class="card-header">Most Saled Car</h5>
+		<div class="card-body">
+			<img class="card-img-left" src="@Model.CarImageUrl" alt="Card image cap" style="height:100px;">
+			<h5 class="card-title">@Model.MostSaledCar</h5>
+		</div>
+	</div>
+
+	<h3 class="display-6">Orders</h3>
 	<div class="table">
 		<table class="table">
 			<thead class="thead">
@@ -29,45 +51,55 @@
 		</table>
 	</div>
 
-	<div class="table" style="display: inline;">
-		<table class="table" style="width: 400px;">
-			<thead class="thead-dark">
+	<h3 class="display-6">Employees</h3>
+	<div class="table">
+		<table class="table">
+			<thead class="thead">
 				<tr>
-					<th scope="col">Date</th>
-					<th scope="col">Car</th>
-					<th scope="col">Color</th>
-					<th scope="col">Transmission</th>
-					<th scope="col">Total Price</th>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td scope="row">Yes</td>
-					<td>Yes</td>
-					<td>Yes</td>
-					<td>Yes</td>
-					<td>€54325</td>
-				</tr>
-
-				<tr>
-					<td scope="row">Yes</td>
-					<td>Yes</td>
-					<td>Yes</td>
-					<td>Yes</td>
-					<td>€54325</td>
-				</tr>
-
-				foreach (var order in Model)
-					{
+				@foreach (var emp in Model.Employees)
+				{
 					<tr>
-					<td scope="row">@order.Date</td>
-					<td>@order.CarBrand @order.CarModel</td>
-					<td>@order.Color</td>
-					<td>@order.TransmissionType</td>
-					<td>€@order.Price</td>
+						<td scope="row">@emp.Name</td>
+						<td scope="row">@emp.Email</td>
+						<td>
+							<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers"
+						   type="button" class="btn btn-primary">Change</a>
+						</td>
 					</tr>
-					}
+				}
 			</tbody>
 		</table>
 	</div>
-</div>*@
+
+	<h3 class="display-6">Clients</h3>
+	<div class="table">
+		<table class="table">
+			<thead class="thead">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var emp in Model.Clients)
+				{
+					<tr>
+						<td scope="row">@emp.Name</td>
+						<td scope="row">@emp.Email</td>
+						<td>
+							<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers"
+						   type="button" class="btn btn-primary">Change</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -8,7 +8,10 @@
 <div class="text-center">
 	<h1 class="display-4">Cars of @Model.BrandName</h1>
 </div>
-@foreach (var car in Model.Cars)
-{
-	@await Html.PartialAsync("_CarCardPartial", car)
-}
+
+<div class="text-center">
+	@foreach (var car in Model.Cars)
+	{
+		@await Html.PartialAsync("_CarCardPartial", car)
+	}
+</div>

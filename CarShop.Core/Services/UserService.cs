@@ -1,7 +1,9 @@
-﻿using CarShop.Core.Contracts;
+﻿using CarShop.Core.Constants;
+using CarShop.Core.Contracts;
 using CarShop.Core.Models;
 using CarShop.Infrastructure.Data.Identity;
 using CarShop.Infrastructure.Data.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarShop.Core.Services
@@ -9,9 +11,13 @@ namespace CarShop.Core.Services
     public class UserService : IUserService
     {
         private readonly IApplicationDbRepository repo;
+        private readonly UserManager<ApplicationUser> manager;
 
-        public UserService(IApplicationDbRepository _repo)
+        public UserService(
+            IApplicationDbRepository _repo,
+            UserManager<ApplicationUser> _manager)
         {
+            manager = _manager;
             repo = _repo;
         }
 
@@ -30,6 +36,39 @@ namespace CarShop.Core.Services
             }
 
             return result;
+        }
+
+        public async Task<IEnumerable<UserListViewModel>> GetClients()
+        {
+            var clients = new List<ApplicationUser>();
+
+            var users = await repo.All<ApplicationUser>().ToListAsync();
+
+            foreach (var user in users)
+            {
+                if(!await manager.IsInRoleAsync(user, UserConstants.Roles.Administrator) &&
+                   !await manager.IsInRoleAsync(user, UserConstants.Roles.Employee))
+                {
+                    clients.Add(user);
+                }
+            }
+
+            return clients.Select(u => new UserListViewModel()
+            {
+                Name = $"{u.FirstName} {u.LastName}",
+                Email = u.Email
+            }).ToList();
+        }
+
+        public async Task<IEnumerable<UserListViewModel>> GetEmployees()
+        {
+            var users = await manager.GetUsersInRoleAsync(UserConstants.Roles.Employee);
+
+            return users.Select(u => new UserListViewModel()
+            {
+                Name = $"{u.FirstName} {u.LastName}",
+                Email = u.Email
+            }).ToList();
         }
 
         public async Task<ApplicationUser> GetUserById(string id)

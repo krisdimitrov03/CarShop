@@ -26,10 +26,12 @@ namespace CarShop.Core.Services
             var cars = await repo.All<Car>()
                 .Where(c => c.BrandId == brandId)
                 .Include(c => c.Images)
+                .Include(c => c.Brand)
                 .Select(c => new CarFilterViewModel()
                 {
                     Id = c.Id.ToString(),
-                    Brand = c.Brand.Name,
+                    Brand = c.BrandId.ToString(),
+                    BrandName = c.Brand.Name,
                     ImageUrl = c.Images.FirstOrDefault(i => i.IsProfile).ImageUrl,
                     Model = c.Model,
                     Price = c.Price.ToString()
@@ -62,12 +64,14 @@ namespace CarShop.Core.Services
         {
             return await repo.All<Car>()
                 .Include(c => c.Images)
+                .Include(c => c.Brand)
                 .Include(c => c.Engine)
                 .ThenInclude(e => e.EngineType)
                 .Select(c => new CarFilterViewModel()
                 {
                     Id= c.Id.ToString(),
                     Brand = c.BrandId.ToString(),
+                    BrandName = c.Brand.Name,
                     ImageUrl = c.Images.FirstOrDefault(i => i.IsProfile).ImageUrl,
                     Model= c.Model,
                     ReleaseYear = c.ReleaseYear.ToString(),
@@ -84,6 +88,7 @@ namespace CarShop.Core.Services
         {
             var car = await repo.All<Car>()
                 .Include(c => c.Images)
+                .Include(c => c.Brand)
                 .Where(c => c.Id == Guid.Parse(carId))
                 .FirstOrDefaultAsync();
 
@@ -91,6 +96,11 @@ namespace CarShop.Core.Services
             {
                 Id = car.Id.ToString(),
                 ImageUrl = car.Images.FirstOrDefault(i => i.IsProfile).ImageUrl,
+                OtherImagesUrls = car.Images
+                .Where(i => !i.IsProfile)
+                .Select(i => i.ImageUrl)
+                .ToArray(),
+                Brand = car.Brand.Name,
                 Model = car.Model,
                 Price = car.Price,
                 Height = car.Height,
@@ -344,6 +354,40 @@ namespace CarShop.Core.Services
                 DoorConfigs = doorConfigs,
                 CoupeTypes = coupeTypes
             };
+        }
+
+        public async Task<(CarCardViewModel, int)> GetMostSaledCar()
+        {
+            var cars = await repo.All<Car>()
+                .Include(c => c.Brand)
+                .Include(c => c.Images)
+                .ToListAsync();
+
+            int count = 0;
+            Car? mostSaledCar = null;
+
+            foreach (var car in cars)
+            {
+                var orders = await repo.All<Order>()
+                    .Where(o => o.CarId == car.Id)
+                    .ToListAsync();
+
+                if(orders.Count > count)
+                {
+                    count = orders.Count;
+                    mostSaledCar = car;
+                }
+            }
+
+            return (new CarCardViewModel()
+            {
+                Id = mostSaledCar.Id.ToString(),
+                Brand = mostSaledCar.Brand.Name,
+                Model = mostSaledCar.Model,
+                ImageUrl = mostSaledCar.Images
+                .FirstOrDefault(i => i.IsProfile).ImageUrl,
+                Price = mostSaledCar.Price.ToString()
+            }, count);
         }
     }
 }

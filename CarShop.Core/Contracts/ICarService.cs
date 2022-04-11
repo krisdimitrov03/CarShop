@@ -23,5 +23,6 @@ namespace CarShop.Core.Contracts
         Task<bool> CreateImagesForCar(List<Image> images);
         Task<bool> CreateImagesForCar(Image image);
         Task<(bool, string)> Update(CarCreateViewModel returnedModel);
+        Task<(CarCardViewModel, int)> GetMostSaledCar();
     }
 }

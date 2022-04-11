@@ -83,6 +83,30 @@ namespace CarShop.Core.Services
             return true;
         }
 
+        public async Task<IEnumerable<OrderListViewModel>> GetAll()
+        {
+            return await repo.All<Order>()
+                .Include(o => o.Car)
+                .ThenInclude(c => c.Brand)
+                .Include(o => o.User)
+                .Include(o => o.TransmissionType)
+                .Include(o => o.Color)
+                .Select(o => new OrderListViewModel()
+                {
+                    CarBrand = o.Car.Brand.Name,
+                    CarModel = o.Car.Model,
+                    UserFirstName = o.User.FirstName,
+                    UserLastName = o.User.LastName,
+                    TransmissionType = o.TransmissionType.Name,
+                    Color = o.Color.Name,
+                    Date = $"{o.OrderDate.Day}" +
+                           $".{o.OrderDate.Month}" +
+                           $".{o.OrderDate.Year}",
+                    Price = o.TotalPrice.ToString(),
+                })
+                .ToListAsync();
+        }
+
         public async Task<ExtrasDbInfoViewModel> GetInfoForNewOrder()
         {
             var colors = await repo.All<Color>()
@@ -102,7 +126,7 @@ namespace CarShop.Core.Services
             };
         }
 
-        public async Task<IEnumerable<OrderListViewModel>> GetPersonalOrders(string id)
+        public async Task<IEnumerable<OrderListViewModel>> GetPersonal(string id)
         {
             return await repo.All<Order>()
                 .Include(o => o.Car)

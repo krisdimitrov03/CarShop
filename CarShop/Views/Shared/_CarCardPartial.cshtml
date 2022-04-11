@@ -6,7 +6,7 @@
 	<img class="card-img-top" src="@Model.ImageUrl" style="height: 150px; object-fit: cover;" alt="Card image cap">
 	<div class="card-body">
 		<h5>@Model.Model</h5>
-		<p class="card-text">@Model.Brand</p>
+		<p class="card-text">@Model.BrandName</p>
 		<h6 class="card-text">@Model.Price</h6>
 		<a asp-controller="Cars" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Details</a>
 

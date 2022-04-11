@@ -12,6 +12,7 @@ namespace CarShop.Core.Contracts
     {
         Task<ExtrasDbInfoViewModel> GetInfoForNewOrder();
         Task<bool> Create(string carId, string[] extraIds, string colorId, string transmissionTypeId, ClaimsPrincipal user);
-        Task<IEnumerable<OrderListViewModel>> GetPersonalOrders(string id);
+        Task<IEnumerable<OrderListViewModel>> GetPersonal(string id);
+        Task<IEnumerable<OrderListViewModel>> GetAll();
     }
 }

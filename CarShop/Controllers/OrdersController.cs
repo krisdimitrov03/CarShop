@@ -91,7 +91,7 @@ namespace CarShop.Controllers
         {
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var model = await service.GetPersonalOrders(id);
+            var model = await service.GetPersonal(id);
 
             return View(model);
         }

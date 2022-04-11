@@ -5,20 +5,36 @@
 	ViewData["Title"] = "Edit Car";
 }
 
-<img src="@Model.ImageUrl" />
-<p>Model: @Model.Model</p>
-<p>Height: @Model.Height</p>
-<p>Width: @Model.Width</p>
-<p>Length: @Model.Length</p>
-<p>Weight: @Model.Weight</p>
-<p>Release Year: @Model.ReleaseYear</p>
-<p>Price: @(Model.Price)€</p>
-@if (User.IsInRole(UserConstants.Roles.Administrator) || User.IsInRole(UserConstants.Roles.Employee))
-{
-	<a asp-area="Emp" asp-controller="Cars" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-	<a asp-area="Emp" asp-controller="Cars" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
-}
-else
-{
-	<a asp-controller="Orders" asp-action="New" asp-route-id="@Model.Id" class="btn btn-primary">Customize</a>
-}
+<style>
+	p {
+		font-size: 120%;
+	}
+</style>
+
+<div class="text-center">
+	<h1 class="display-4">@Model.Brand @Model.Model</h1>
+</div>
+
+<div class="text-center">
+	<img src="@Model.ImageUrl" height="300px"/>
+</div>
+<div class="text-center">
+	@foreach (var imageUrl in Model.OtherImagesUrls)
+	{
+		<img src="@imageUrl" height="150px"/>
+	}
+
+	<p><strong>Height:</strong> @Model.Height <strong>Width:</strong> @Model.Width</p>
+	<p><strong>Length:</strong> @Model.Length <strong>Weight:</strong> @Model.Weight</p>
+	<p><strong>Release Year:</strong> @Model.ReleaseYear</p>
+	<p><strong>Price:</strong> @(Model.Price)€</p>
+	@if (User.IsInRole(UserConstants.Roles.Administrator) || User.IsInRole(UserConstants.Roles.Employee))
+	{
+		<a asp-area="Emp" asp-controller="Cars" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+		<a asp-area="Emp" asp-controller="Cars" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+	}
+	else
+	{
+		<a asp-controller="Orders" asp-action="New" asp-route-id="@Model.Id" class="btn btn-primary">Customize</a>
+	}
+</div>
