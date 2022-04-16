@@ -183,14 +183,3 @@
 </div>
 
 <script src="~/js/allCars.js"></script>
-
-<div class="text-center">
-	<h1 class="display-4"></h1>
-</div>
-
-<div class="text-center">
-	@foreach (var car in Model.Cars)
-	{
-		@await Html.PartialAsync("_CarCardPartial", car)
-	}
-</div>

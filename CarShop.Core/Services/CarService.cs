@@ -89,6 +89,10 @@ namespace CarShop.Core.Services
         {
             var car = await repo.All<Car>()
                 .Include(c => c.Images)
+                .Include(c => c.Engine)
+                .ThenInclude(c => c.EngineType)
+                .Include(c => c.DoorConfig)
+                .Include(c => c.CoupeType)
                 .Include(c => c.Brand)
                 .Where(c => c.Id == Guid.Parse(carId))
                 .FirstOrDefaultAsync();
@@ -103,6 +107,11 @@ namespace CarShop.Core.Services
                 .ToArray(),
                 Brand = car.Brand.Name,
                 Model = car.Model,
+                Engine = car.Engine.EngineType.Name,
+                DoorConfig = car.DoorConfig.Name,
+                CoupeType = car.CoupeType.Name,
+                HorsePower = car.Engine.HorsePower.ToString(),
+                FuelConsumption = car.FuelConsumption.ToString(),
                 Price = car.Price,
                 Height = car.Height,
                 Width = car.Width,

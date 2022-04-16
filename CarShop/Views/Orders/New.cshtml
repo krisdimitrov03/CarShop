@@ -7,36 +7,60 @@
 	var extras = (List<SelectListItem>)ViewBag.Extras;
 }
 
-<form method="post">
-	<input type="hidden" asp-for="CarId" />
-	<div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="@Model.CarImageUrl">
-		<div class="card-body">
-			<h5 class="card-title">@Model.Car</h5>
+<link rel="stylesheet" href="~/css/style/costumize-style.css">
+
+<div class="main">
+	<h1>Customize Vehicle</h1>
+	<form method="post">
+		<select asp-for="ExtraIds" id="extras-select" style="display: none;">
+		</select>
+
+		<input type="hidden" asp-for="CarId"/>
+
+		<div class="vehicle-section" style="background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+			url('@Model.CarImageUrl');
+			background-position: center;
+			background-size: cover;">
+
+			<div class="id">
+				<h3>@(Model.Car.Split()[1])</h3>
+				<h4>@(Model.Car.Split()[0])</h4>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<label>Color</label>
-		<select asp-for="ColorId" asp-items="@colors" class="form-control">
-			<option value="none">(None)</option>
-		</select>
-	</div>
+		<div class="middle">
+			<div class="select">
+				<h4>Color</h4>
+				<select asp-for="ColorId" asp-items="colors" id="color-select">
+				</select>
+			</div>
 
-	<div class="form-group">
-		<label>Transmission Type</label>
-		<select asp-for="TransmissionTypeId" asp-items="@transmissionTypes" class="form-control">
-			<option value="none">(None)</option>
-		</select>
-	</div>
+			<div class="select">
+				<h4>Transmission Type</h4>
+				<select asp-for="TransmissionTypeId" asp-items="transmissionTypes" id="transmission-select">
+				</select>
+			</div>
+		</div>
 
-	<div class="form-group">
-		<label>Extras</label>
-		<select asp-for="ExtraIds" asp-items="@extras" class="form-control">
-		</select>
-	</div>
+		<div class="extras">
+			<h4>Extras</h4>
+			<div class="extras-area">
+				@foreach (var extra in extras)
+				{
+					<div class="extra">
+						<input type="checkbox" name="@extra.Value" value="@extra.Value">
+						<label for="@extra.Value">@extra.Text</label>
+					</div>
+				}
+			</div>
+		</div>
 
-	<div style="display: inline-block" class="pt-1 mb-4">
-		<button type="submit" class="btn btn-lg btn-block">Order</button>
-	</div>
-</form>
+		<div class="bottom">
+			<p>€ @Model.Price</p>
+			<button type="submit">Order</button>
+		</div>
+	</form>
+</div>
+
+<script src="~/js/order-extras.js"></script>

@@ -18,7 +18,15 @@ namespace CarShop.Core.Models
 
         public string Model { get; set; }
 
-        public decimal Price { get; set; }
+		public string Engine { get; set; }
+
+		public string HorsePower { get; set; }
+
+		public string CoupeType { get; set; }
+
+		public string DoorConfig { get; set; }
+
+		public decimal Price { get; set; }
 
         public int ReleaseYear { get; set; }
 
@@ -29,5 +37,7 @@ namespace CarShop.Core.Models
         public int Length { get; set; }
 
         public int Weight { get; set; }
-    }
+
+		public string FuelConsumption { get; set; }
+	}
 }

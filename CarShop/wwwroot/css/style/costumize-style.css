@@ -6,10 +6,11 @@ body {
     font-family: 'Roboto';
     background: linear-gradient(rgba(0, 0, 0, 0.6),
             rgba(0, 0, 0, 0.6)),
-        url(../img/customize-background.jpg);
-    background-position: fixed;
+        url(../../img/img/customize-background.jpg);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .main {
@@ -30,13 +31,8 @@ body {
 }
 
 .vehicle-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)),
-        url(../img/profile-image.jpg);
     height: 400px;
     width: 500px;
-    background-position: center;
-    background-size: cover;
     text-align: left;
     position: relative;
     padding: 30px;
@@ -102,7 +98,7 @@ body {
     font-size: 2rem;
 }
 
-.bottom a {
+.bottom button {
     text-decoration: none;
     color: white;
     background-color: #001E50;
@@ -113,7 +109,7 @@ body {
     transition: 300ms ease;
 }
 
-.bottom a:hover {
+.bottom button:hover {
     background-color: white;
     color: #001E50;
 }
