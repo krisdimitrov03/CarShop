@@ -19,18 +19,16 @@ Array.from(document.querySelectorAll('.role input')).forEach(roleEL => {
 Array.from(document.querySelectorAll('.role input')).forEach(el => {
 	el.addEventListener('change', (e) => {
 		if (e.currentTarget.checked) {
-			let optionEl = document.createElement('option');
-			optionEl.text = e.currentTarget.value;
-			optionEl.value = e.currentTarget.value;
-			optionEl.selected = true;
+			let optionEl = Array.from(rolesSelect.children)
+				.find(el => el.value == e.currentTarget.value);
 
-			rolesSelect.appendChild(optionEl);
+			optionEl.selected = true;
 		} else {
 			let elementToRemove = Array
 				.from(rolesSelect.children)
 				.find(el => el.value == e.currentTarget.value);
 
-			rolesSelect.removeChild(elementToRemove);
+			elementToRemove.selected = false;
 		}
 	})
 })

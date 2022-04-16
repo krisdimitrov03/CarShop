@@ -1,8 +1,9 @@
-﻿@{
+﻿@model UserDisplayInNavigationModel
+@{
 	ViewData["Title"] = "Home Page";
 }
 
-@model UserDisplayInNavigationModel
+<link rel="stylesheet" href="~/css/brands-circle.css"/>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-indicators">
@@ -35,3 +36,40 @@
 		<span class="visually-hidden">Next</span>
 	</button>
 </div>
+
+<div class="main" style="padding: 50px;">
+	<div class="ctr">
+		<div class="logos">
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="center-of-circle">
+				<img src="~/img/logos/volkswagen.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="first">
+				<img src="~/img/logos/porsche.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="second">
+				<img src="~/img/logos/lamborghini.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="third">
+				<img src="~/img/logos/bugatti.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="forth">
+				<img src="~/img/logos/ducati.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="fifth">
+				<img src="~/img/logos/bentley.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="sixth">
+				<img src="~/img/logos/audi.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="seventh">
+				<img src="~/img/logos/skoda.png">
+			</a>
+			<a asp-area="" asp-controller="Brands" asp-action="All" class="logo" id="eight">
+				<img src="~/img/logos/seat.png">
+			</a>
+		</div>
+	</div>
+	<h1>Drive whatever you want from all brands inside ‘Volkswagen Group’.</h1>
+</div>
+
+<script src="~/js/brands-circle-app.js"></script>

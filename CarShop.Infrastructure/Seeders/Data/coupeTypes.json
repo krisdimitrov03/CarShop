@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Sedan"
+  },
+  {
+    "Id": 2,
+    "Name": "Combi"
+  },
+  {
+    "Id": 3,
+    "Name": "Hatchback"
+  },
+  {
+    "Id": 4,
+    "Name": "Coupe"
+  }
+]

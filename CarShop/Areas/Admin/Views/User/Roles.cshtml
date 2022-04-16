@@ -33,6 +33,8 @@
 			<button id="login-submit" type="submit" class="btn btn-lg btn-block">Save</button>
 			</div>*@
 
+		<input type="hidden" name="UserId" value="@Model.UserId" />
+
 		<h2>Roles of @Html.DisplayFor(m => m.Name)</h2>
 
 		<select id="roles-select" asp-for="RoleNames" asp-items="items"></select>

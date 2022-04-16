@@ -181,16 +181,16 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						@foreach (var emp in Model.Employees)
-						{
+					@foreach (var emp in Model.Employees)
+					{
+						<tr>
 							<td>@emp.Name</td>
 							<td>@emp.Email</td>
 							<td class="actions">
 								<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers" class="edit">Change</a>
 							</td>
-						}
-					</tr>
+						</tr>
+					}
 				</tbody>
 			</table>
 		</div>

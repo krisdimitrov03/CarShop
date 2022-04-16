@@ -1,0 +1,54 @@
+﻿.ctr {
+    margin: 40px 200px;
+    float: right;
+}
+
+.logos {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    animation: circle-rotate 100s linear infinite both;
+    position: relative;
+}
+
+.center-of-circle {
+    position: absolute;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    animation: circle-rotate-contra 100s linear infinite both;
+}
+
+    .center-of-circle img {
+        height: 150px;
+        width: 150px;
+    }
+
+.logo {
+    border-radius: 50%;
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    animation: circle-rotate-contra 100s linear infinite both;
+    transition: 200ms;
+}
+
+    .logo img {
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+        transition: 200ms;
+        vertical-align: middle;
+    }
+
+@keyframes circle-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes circle-rotate-contra {
+    100% {
+        transform: rotate(-360deg);
+    }
+}

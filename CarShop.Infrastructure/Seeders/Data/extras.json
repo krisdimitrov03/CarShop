@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "Name": "Keyless lock",
+    "Price": 400.00
+  },
+  {
+    "Id": 2,
+    "Name": "Hatch",
+    "Price": 350.00
+  },
+  {
+    "Id": 3,
+    "Name": "Android/IOS navigation",
+    "Price": 150.00
+  },
+  {
+    "Id": 4,
+    "Name": "BOSE Stereo",
+    "Price": 500.00
+  },
+  {
+    "Id": 5,
+    "Name": "Vented seats",
+    "Price": 600.00
+  },
+  {
+    "Id": 6,
+    "Name": "VW merchandise",
+    "Price": 10.00
+  },
+  {
+    "Id": 7,
+    "Name": "Leather seats",
+    "Price": 800.00
+  },
+  {
+    "Id": 8,
+    "Name": "Tinted back windows",
+    "Price": 500.00
+  }
+]

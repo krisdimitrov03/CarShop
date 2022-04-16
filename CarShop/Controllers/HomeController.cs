@@ -35,12 +35,6 @@ namespace CarShop.Controllers
                             nameof(Areas.Admin.Controllers.HomeController).Replace("Controller", ""),
                             new { area = nameof(Areas.Admin) });
             }
-            else if (User.IsInRole(UserConstants.Roles.Employee))
-            {
-                return RedirectToAction(nameof(Areas.Emp.Controllers.HomeController.Index),
-                            nameof(Areas.Emp.Controllers.HomeController).Replace("Controller", ""),
-                            new { area = nameof(Areas.Emp) });
-            }
 
             return View();
         }

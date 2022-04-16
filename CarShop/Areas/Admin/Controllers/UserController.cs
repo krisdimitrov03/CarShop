@@ -83,15 +83,15 @@ namespace CarShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Roles(UserRolesViewModel model)
+        public async Task<IActionResult> Roles(UserRolesViewModel returnedModel)
         {
-            var user = await service.GetUserById(model.UserId);
+            var user = await service.GetUserById(returnedModel.UserId);
             var userRoles = await userManager.GetRolesAsync(user);
             await userManager.RemoveFromRolesAsync(user, userRoles);
 
-            if (model.RoleNames?.Length > 0)
+            if (returnedModel.RoleNames?.Length > 0)
             {
-                await userManager.AddToRolesAsync(user, model.RoleNames);
+                await userManager.AddToRolesAsync(user, returnedModel.RoleNames);
             }
 
             return RedirectToAction(nameof(ManageUsers));

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarShop.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220408212510_UpdateId")]
-    partial class UpdateId
+    [Migration("20220416211813_beforeSeed")]
+    partial class beforeSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,8 +44,9 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Car", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -349,11 +350,12 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Image", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -371,12 +373,12 @@ namespace CarShop.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("CarShop.Infrastructure.Data.Order", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CarId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
@@ -418,9 +420,8 @@ namespace CarShop.Infrastructure.Data.Migrations
                     b.Property<int>("ExtraId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

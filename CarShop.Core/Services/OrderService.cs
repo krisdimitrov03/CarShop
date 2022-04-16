@@ -25,8 +25,8 @@ namespace CarShop.Core.Services
         public async Task<bool> Create(string carId, string[] extraIds, string colorId, string transmissionTypeId, ClaimsPrincipal _user)
         {
             if (carId == null ||
-                extraIds.Length < 0 ||
                 extraIds == null ||
+                extraIds.Length < 0 ||
                 transmissionTypeId == null ||
                 colorId == null)
             {

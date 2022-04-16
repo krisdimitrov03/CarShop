@@ -1,0 +1,34 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Volkswagen"
+  },
+  {
+    "Id": 2,
+    "Name": "Bugatti"
+  },
+  {
+    "Id": 3,
+    "Name": "Bentley"
+  },
+  {
+    "Id": 4,
+    "Name": "Lamborghini"
+  },
+  {
+    "Id": 5,
+    "Name": "Porsche"
+  },
+  {
+    "Id": 6,
+    "Name": "Seat"
+  },
+  {
+    "Id": 7,
+    "Name": "Skoda"
+  },
+  {
+    "Id": 8,
+    "Name": "Audi"
+  }
+]
