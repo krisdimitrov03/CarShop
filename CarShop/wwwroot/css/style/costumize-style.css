@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    background: linear-gradient(rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)),
+        url(../img/customize-background.jpg);
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main {
+    text-align: center;
+}
+
+.main .vehicle-section,
+.main .middle,
+.main .extras {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main h1 {
+    color: white;
+    font-size: 4rem;
+    padding: 50px 0;
+}
+
+.vehicle-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url(../img/profile-image.jpg);
+    height: 400px;
+    width: 500px;
+    background-position: center;
+    background-size: cover;
+    text-align: left;
+    position: relative;
+    padding: 30px;
+    border: 2px solid white;
+}
+
+.vehicle-section .id {
+    position: absolute;
+    bottom: 15px;
+    color: white;
+}
+
+.middle {
+    padding: 0 100px;
+}
+
+.select {
+    padding: 50px 0;
+}
+
+.select h4 {
+    color: white;
+    text-align: left;
+}
+
+.select select {
+    font-size: 1.2rem;
+    color: #001E50;
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 0px;
+}
+
+.extras h4 {
+    color: white;
+}
+
+.extras-area {
+    background-color: white;
+    text-align: left;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+.extra {
+    padding: 10px;
+    color: #001E50;
+}
+
+.extra input {
+    accent-color: #001E50;
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+.bottom {
+    color: white;
+    padding: 50px 0;
+}
+
+.bottom p {
+    font-size: 2rem;
+}
+
+.bottom a {
+    text-decoration: none;
+    color: white;
+    background-color: #001E50;
+    display: inline-block;
+    padding: 10px 60px;
+    font-size: 1.3rem;
+    border: 2px solid #001E50;
+    transition: 300ms ease;
+}
+
+.bottom a:hover {
+    background-color: white;
+    color: #001E50;
+}

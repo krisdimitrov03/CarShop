@@ -304,6 +304,8 @@ namespace CarShop.Core.Services
 
                 repo.DeleteRange(car.Images);
 
+                await repo.SaveChangesAsync();
+
                 var profileImage = new Image()
                 {
                     ImageUrl = returnedModel.ProfileImageUrl,

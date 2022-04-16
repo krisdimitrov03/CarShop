@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    text-align: center;
+
+    background-image:
+        url(../../img/img/customize-background.jpg);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.main {
+    display: inline-block;
+    font-size: 140%;
+    color: #001E50;
+    background-color: white;
+    padding: 50px;
+    margin-top: 150px;
+}
+
+.main h2 {
+    margin: 0;
+}
+
+.main h1,
+.main h3 {
+    margin: 0;
+}
+
+#roles-select {
+    display: none;
+}
+
+.roles {
+    text-align: left;
+    margin: 50px 150px;
+}
+
+.role input {
+    accent-color: #001E50;
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+.save {
+    text-decoration: none;
+    color: white;
+    background-color: #001E50;
+    display: inline-block;
+    padding: 10px 60px;
+    font-size: 1.3rem;
+    border: 2px solid #001E50;
+    transition: 300ms ease;
+}
+
+.save:hover {
+    background-color: white;
+    color: #001E50;
+}
+
+.names {
+    padding: 50px;
+}
+
+.name input {
+    height: 30px;
+    border-radius: 0;
+    border: 2px solid #001E50;
+    padding: 0 10px;
+    color: #001E50;
+}
+
+.name p {
+    font-size: 90%;
+    margin-bottom: 0;
+}

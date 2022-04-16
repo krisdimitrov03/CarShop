@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    text-align: center;
+
+    background-image:
+        url('../../img/img/customize-background.jpg');
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.main {
+    display: inline-block;
+    font-size: 140%;
+    color: #001E50;
+    background-color: white;
+    padding: 50px 70px;
+    margin-top: 100px;
+}
+
+.main h1,
+.main h3 {
+    margin: 0;
+}
+
+.main h3 {
+    width: 400px;
+}
+
+.main h1 {
+    padding: 50px 0;
+    color: #0040A9;
+}
+
+.main .icon svg {
+    height: 150px;
+    width: 150px;
+}
+
+.message {
+    padding-bottom: 30px;
+}
+
+.actions a,
+.actions button {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #001E50;
+    border: 2px solid #001E50;
+    padding: 10px 30px;
+    font-size: 90%;
+    transition: 300ms ease;
+    margin: 0 10px;
+}
+
+.actions .delete {
+    background-color: #8A1616;
+    border-color: #8A1616;
+}
+
+.actions a:hover {
+    color: #001E50;
+    background-color: transparent;
+}
+
+.actions .delete:hover {
+    color: #8A1616;
+    background-color: white;
+}
+
+.vehicle-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url(../img/profile-image.jpg);
+    height: 200px;
+    width: 300px;
+    background-position: center;
+    background-size: cover;
+    text-align: left;
+    position: relative;
+    padding: 30px;
+    border: 2px solid white;
+    display: inline-block;
+    margin: 50px 0;
+}
+
+.vehicle-section .id {
+    position: absolute;
+    bottom: 0;
+    color: white;
+}

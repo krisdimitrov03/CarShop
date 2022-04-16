@@ -4,9 +4,21 @@
 	ViewData["Title"] = "Delete";
 }
 
+<link rel="stylesheet" href="~/css/style/delete-style.css">
+
 <form method="post">
-	<input type="hidden" value="@Model.Name"/>
-	<h1>Are you sure that you want to remove user @Model.Name from the database?</h1>
-	<button asp-area="Admin" asp-controller="User" asp-action="Delete" type="submit" class="btn btn-danger">Yes</button>
-	<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers" class="btn btn-primary">Cancel</a>
+	<div class="main">
+		<div class="question">
+			<h3>Are you sure you want to delete this user from the database?</h3>
+		</div>
+
+		<div class="user">
+			<h1>@Model.Name</h1>
+		</div>
+
+		<div class="actions">
+			<button type="submit" class="delete">Delete</button>
+			<a asp-area="Admin" asp-controller="User" asp-action="ManageUsers">Cancel</a>
+		</div>
+	</div>
 </form>

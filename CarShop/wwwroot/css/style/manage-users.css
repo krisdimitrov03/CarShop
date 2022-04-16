@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+@import url(./table-pages-style.css);
+
+.actions {
+    padding: 0;
+}
+
+.actions a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    transition: 300ms ease;
+}
+
+.edit {
+    background-color: #0040A9;
+    border: 2px solid #0040A9;
+}
+
+.edit:hover {
+    color: #0040A9;
+    background-color: white;
+}
+
+.roles {
+    border: 2px solid #FFB800;
+    background-color: #FFB800;
+}
+
+.roles:hover {
+    color: #FFB800;
+    background-color: white;
+}
+
+.delete {
+    border: 2px solid #8A1616;
+    background-color: #8A1616;
+}
+
+.delete:hover {
+    color: #8A1616;
+    background-color: white;
+}

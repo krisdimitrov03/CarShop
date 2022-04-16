@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    background: linear-gradient(rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.3)),
+        url(../img/create-edit-car-background.png);
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.profile-image,
+.right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.profile-image {
+    padding-right: 10px;
+}
+
+.profile-image img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border: 2px solid #001E50;
+}
+
+.param {
+    display: inline-block;
+    width: 200px;
+    padding: 18px 10px;
+    text-align: left;
+}
+
+.param input, 
+.param select {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 0;
+    border: 2px solid #001E50;
+    padding: 0 10px;
+    color: #001E50;
+}
+
+.param p {
+    margin: 0;
+    color: #001E50;
+    font-weight: 500;
+}
+
+.bottom .add-url,
+.bottom .param {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bottom .param {
+    padding-top: 0;
+}
+
+.add-url p {
+    margin: 0;
+    color: #001E50;
+    font-weight: 500;
+    text-align: left;
+}
+
+.add-url input {
+    height: 40px;
+    border-radius: 0;
+    border: 2px solid #001E50;
+    padding: 0 10px;
+    color: #001E50;
+    float: left;
+}
+
+.add-url a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #001E50;
+    border: 2px solid #001E50;
+    padding: 6px 20px;
+    transition: 300ms ease;
+}
+
+.add-url a:hover {
+    color: #001E50;
+    background-color: white;
+}
+
+.bottom .add-url {
+    padding-right: 110px;
+}
+
+.profile-image .add-url,
+.bottom {
+    padding-top: 10px;
+}
+
+.additional-images {
+    padding: 50px;
+    background-color: #001E50;
+    width: 1100px;
+    display: inline-block;
+}
+
+.image {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+}
+
+.additional-images img {
+    height: 200px;
+}
+
+.additional-images span {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+.submit button {
+    color: white;
+    background-color: #001E50;
+    border: 2px solid #001E50;
+    padding: 10px 50px;
+    margin-top: 30px;
+    transition: 300ms ease;
+    font-weight: 500;
+}
+
+.submit button:hover {
+    color: #001E50;
+    background-color: white;
+}

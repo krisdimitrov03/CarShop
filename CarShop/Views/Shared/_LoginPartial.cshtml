@@ -11,14 +11,22 @@
 		user = UserManager.FindByIdAsync(User.FindFirstValue(ClaimTypes.NameIdentifier)).Result.FirstName;
 }
 
-<ul class="nav justify-content-end">
+<ul class="nav justify-content-center">
 	<li class="nav-item">
 		<a class="nav-link" asp-area="" asp-controller="Cars" asp-action="All">Stock</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link" asp-area="" asp-controller="Brands" asp-action="All">Brands</a>
 	</li>
+	<li class="nav-item">
+		<a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
+	</li>
+</ul>
 
+<ul class="nav justify-content-end">
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
@@ -66,12 +74,12 @@
 	}
 	else
 	{
-		<li class="nav-item">
-			<a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
-		</li>
+		//<li class="nav-item">
+		//	<a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About</a>
+		//</li>
+		//<li class="nav-item">
+		//	<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
+				//</li>
 		<li class="nav-item">
 			<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log in</a>
 		</li>

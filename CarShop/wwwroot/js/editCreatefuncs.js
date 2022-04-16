@@ -18,7 +18,7 @@ document.getElementById('add-img').addEventListener('click', () => {
 
     buttonEl.addEventListener('click', (e) => {
         let div = e.currentTarget.parentElement;
-        let url = e.currentTarget.parentElement.children[0].src;
+        let url = e.currentTarget.previousSibling.src;
 
         let urls = document.getElementById('submitUrls').value;
 
