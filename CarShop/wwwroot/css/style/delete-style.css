@@ -75,13 +75,8 @@ body {
 }
 
 .vehicle-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)),
-        url(../img/profile-image.jpg);
     height: 200px;
     width: 300px;
-    background-position: center;
-    background-size: cover;
     text-align: left;
     position: relative;
     padding: 30px;

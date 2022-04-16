@@ -6,10 +6,11 @@ body {
     font-family: 'Roboto';
     background: linear-gradient(rgba(255, 255, 255, 0.3),
             rgba(255, 255, 255, 0.3)),
-        url(../img/create-edit-car-background.png);
-    background-position: fixed;
+        url(../../img/img/create-edit-car-background.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .main {
@@ -87,7 +88,7 @@ body {
 .add-url a {
     display: inline-block;
     text-decoration: none;
-    color: white;
+    color: white!important;
     background-color: #001E50;
     border: 2px solid #001E50;
     padding: 6px 20px;
@@ -95,7 +96,7 @@ body {
 }
 
 .add-url a:hover {
-    color: #001E50;
+    color: #001E50!important;
     background-color: white;
 }
 

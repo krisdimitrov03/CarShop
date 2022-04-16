@@ -1,53 +1,90 @@
-﻿let imagesEl = document.getElementById('images');
+﻿let resultInput = document.querySelector('#add-img-urls');
 
-document.getElementById('add-img').addEventListener('click', () => {
-    let url = document.getElementById('imageUrls');
+let profileImageInput = document.querySelector('.profile-image input');
+let profileImageBtn = document.querySelector('.profile-image a');
+let container = document.querySelector('.additional-images');
 
-    if (url.value === '') {
-        return;
+if (resultInput.value != null) {
+    let gotUrls = resultInput.value.split(' || ');
+
+    if (gotUrls.length > 0) {
+        gotUrls.forEach(url => {
+            let imgDiv = document.createElement('div');
+            imgDiv.classList.add('image');
+
+            let imgEl = document.createElement('img');
+            let spanEl = document.createElement('span');
+
+
+
+            spanEl.innerHTML +=
+                `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                    <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+                </svg>`;
+
+            spanEl.addEventListener('click', (e) => {
+                let elToRemove = e.currentTarget.parentElement;
+                let url = elToRemove.children[0].src;
+
+                resultInput.value = resultInput.value.replace(url, '');
+
+                container.removeChild(elToRemove);
+            });
+
+            imgEl.src = url;
+
+            imgDiv.appendChild(imgEl);
+            imgDiv.appendChild(spanEl);
+
+            container.appendChild(imgDiv);
+        });
     }
+}
 
-    document.getElementById('submitUrls').value += url.value + ' || ';
 
-    let divEl = document.createElement('div');
+profileImageBtn.addEventListener('click', (e) => {
+    let imgEl = e.currentTarget.parentElement.previousElementSibling;
+
+    imgEl.src = profileImageInput.value;
+});
+
+let additionalImagesInput = document.querySelector('.bottom input');
+let additionalImagesBtn = document.querySelector('.bottom a');
+
+additionalImagesBtn.addEventListener('click', (e) => {
+    let imgDiv = document.createElement('div');
+    imgDiv.classList.add('image');
+
     let imgEl = document.createElement('img');
-    imgEl.src = url.value;
-    let buttonEl = document.createElement('span');
-    buttonEl.classList.add('remove-img-btn');
-    buttonEl.textContent = '✖';
+    imgEl.src = additionalImagesInput.value;
 
-    buttonEl.addEventListener('click', (e) => {
-        let div = e.currentTarget.parentElement;
-        let url = e.currentTarget.previousSibling.src;
+    let spanEl = document.createElement('span');
 
-        let urls = document.getElementById('submitUrls').value;
+    spanEl.innerHTML +=
+        `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                <path
+                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+            </svg>`;
 
-        urls = urls.replace(`${url} || `, '');
+    spanEl.addEventListener('click', (e) => {
+        let elToRemove = e.currentTarget.parentElement;
+        let url = elToRemove.children[0].src;
 
-        document.getElementById('submitUrls').value = urls;
+        resultInput.value = resultInput.value.replace(url + ' || ', '');
 
-        document.getElementById('images').removeChild(div);
+        container.removeChild(elToRemove);
     });
 
-    divEl.appendChild(imgEl);
-    divEl.appendChild(buttonEl);
+    imgDiv.appendChild(imgEl);
+    imgDiv.appendChild(spanEl);
 
-    imagesEl.appendChild(divEl);
+    container.appendChild(imgDiv);
 
-    url.value = '';
+    resultInput.value += ' || ' + additionalImagesInput.value + ' || '
+
+    additionalImagesInput.value = '';
 });
 
-Array.from(imagesEl.querySelectorAll('.remove-img-btn')).forEach(b => {
-    b.addEventListener('click', (e) => {
-        let div = e.currentTarget.parentElement;
-        let url = e.currentTarget.parentElement.children[0].src;
-
-        let urls = document.getElementById('submitUrls').value;
-
-        urls = urls.replace(`${url} || `, '');
-
-        document.getElementById('submitUrls').value = urls;
-
-        document.getElementById('images').removeChild(div);
-    });
-});

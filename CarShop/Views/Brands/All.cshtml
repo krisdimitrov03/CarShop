@@ -4,20 +4,21 @@
 	ViewData["Title"] = "Brands";
 }
 
-<div class="text-center">
-	<h1 class="display-4">All Brands</h1>
-</div>
+<link rel="stylesheet" href="~/css/style/brands-style.css">
 
-<div class="main" style="text-align: center;">
-	@foreach (var brand in Model)
-	{
-		<div class="card" style="width: 18rem;">
-			<a asp-controller="Cars" asp-action="ByBrand" asp-route-id="@brand.Id" style="text-decoration: none;">
-				<img src="@brand.ImageUrl" style="height: 200px; object-fit: cover;" class="card-img-top" alt="">
-				<div class="card-body">
-					<h4 class="card-title">@brand.Name</h4>
-				</div>
+<div class="main">
+	<div class="header">
+		<h1>Partners</h1>
+	</div>
+
+	<div class="brands">
+		<h2>Choose between high-quality brands</h2>
+
+		@foreach (var brand in Model)
+		{
+			<a asp-controller="Cars" asp-action="ByBrand" asp-route-id="@brand.Id">
+				<img src="@brand.ImageUrl" alt="">
 			</a>
-		</div>
-	}
+		}
+	</div>
 </div>

@@ -40,6 +40,7 @@ namespace CarShop.Core.Services
 
             return new CarsByBrandViewModel()
             {
+                BrandId = brandId.ToString(),
                 BrandName = brand.Name,
                 Cars = cars
             };

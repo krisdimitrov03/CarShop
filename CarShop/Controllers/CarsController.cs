@@ -1,4 +1,5 @@
 ﻿using CarShop.Core.Contracts;
+using CarShop.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,15 +15,45 @@ namespace CarShop.Controllers
         }
 
         public async Task<IActionResult> All(
-            string? releaseYearMin=null, 
-            string? releaseYearMax = null, 
-            string? horsepowerMin = null, 
-            string? horsepowerMax = null, 
-            string? fuelType = null, 
-            string? coupeType = null, 
-            string? doorConfig = null,
-            string? priceMin = null,
-            string? priceMax = null)
+            string? sortBy = null,
+            string? fuelType = null,
+            string? coupeType = null,
+            string? doorConfig = null
+            )
+        {
+            var cars = await service.All();
+
+            cars = await ApplyFilters(cars, sortBy, fuelType, coupeType, doorConfig);
+
+            return View(cars);
+        }
+
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var car = await service.GetCarDetails(id);
+
+            return View(car);
+        }
+
+        public async Task<IActionResult> ByBrand(
+            string id,
+            string? sortBy = null,
+            string? fuelType = null,
+            string? coupeType = null,
+            string? doorConfig = null)
+        {
+            var model = await service.GetCarsByBrand(int.Parse(id));
+            model.Cars = await ApplyFilters(model.Cars, sortBy, fuelType, coupeType, doorConfig);
+
+            return View(model);
+        }
+
+        private async Task<IEnumerable<CarFilterViewModel>> ApplyFilters(IEnumerable<CarFilterViewModel> cars,
+            string? sortBy = null,
+            string? fuelType = null,
+            string? coupeType = null,
+            string? doorConfig = null)
         {
             var data = await service.GetFilterData();
 
@@ -47,49 +78,20 @@ namespace CarShop.Controllers
                     Text = n.Name
                 }).ToList();
 
-            var cars = await service.All();
-
-            int minRY = 0;
-            int maxRY = 0;
-            if(releaseYearMin != null && int.TryParse(releaseYearMin, out minRY))
-			{
-                cars = cars
-                    .Where(c => int.Parse(c.ReleaseYear) >= minRY)
-                    .ToList();
-			}
-            if(releaseYearMax != null && int.TryParse(releaseYearMax, out maxRY))
-            {
-                cars = cars
-                    .Where(c => int.Parse(c.ReleaseYear) <= maxRY)
-                    .ToList();
-            }
-
-            int minHP = 0;
-            int maxHP = 0;
-            if (horsepowerMin != null && int.TryParse(horsepowerMin, out minHP))
-            {
-                cars = cars
-                    .Where(c => int.Parse(c.HorsePower) >= minHP)
-                    .ToList();
-            }
-            if(horsepowerMax != null && int.TryParse(horsepowerMax, out maxHP))
-            {
-                cars = cars
-                    .Where(c => int.Parse(c.HorsePower) <= maxHP)
-                    .ToList();
-            }
-            if(fuelType != null)
+            if (fuelType != null)
             {
                 cars = cars
                     .Where(c => c.FuelType == fuelType)
                     .ToList();
             }
+
             if (coupeType != null)
             {
                 cars = cars
                     .Where(c => c.CoupeType == coupeType)
                     .ToList();
             }
+
             if (doorConfig != null)
             {
                 cars = cars
@@ -97,36 +99,35 @@ namespace CarShop.Controllers
                     .ToList();
             }
 
-            decimal minPrice = 0;
-            decimal maxPrice = 0;
-            if (priceMin != null && decimal.TryParse(priceMin, out minPrice))
+            if (sortBy != null)
             {
-                cars = cars
-                    .Where(c => decimal.Parse(c.Price) >= minPrice)
-                    .ToList();
+                if (sortBy == "Price")
+                {
+                    cars = cars.OrderBy(c => c.Price);
+                }
+                if (sortBy == "PriceDesc")
+                {
+                    cars = cars.OrderByDescending(c => c.Price);
+                }
+                if (sortBy == "HorsePower")
+                {
+                    cars = cars.OrderBy(c => c.HorsePower);
+                }
+                if (sortBy == "HorsePowerDesc")
+                {
+                    cars = cars.OrderByDescending(c => c.HorsePower);
+                }
+                if (sortBy == "ReleaseYear")
+                {
+                    cars = cars.OrderBy(c => c.ReleaseYear);
+                }
+                if (sortBy == "ReleaseYearDesc")
+                {
+                    cars = cars.OrderByDescending(c => c.ReleaseYear);
+                }
             }
-            if(priceMax != null && decimal.TryParse(priceMax, out maxPrice))
-            {
-                cars = cars
-                    .Where(c => decimal.Parse(c.Price) <= maxPrice)
-                    .ToList();
-            }
 
-            return View(cars);
-        }
-
-        public async Task<IActionResult> Details(string id)
-        {
-            var car = await service.GetCarDetails(id);
-
-            return View(car);
-        }
-
-        public async Task<IActionResult> ByBrand(string id)
-        {
-            var model = await service.GetCarsByBrand(int.Parse(id));
-
-            return View(model);
+            return cars;
         }
     }
 }

@@ -2,7 +2,8 @@
 {
     public class CarsByBrandViewModel
     {
-        public string BrandName { get; set; }
+		public string BrandId { get; set; }
+		public string BrandName { get; set; }
 
         public IEnumerable<CarFilterViewModel> Cars { get; set; }
     }

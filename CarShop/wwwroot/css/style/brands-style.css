@@ -13,7 +13,7 @@ body {
     background: linear-gradient(
         rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.2)),
-        url(../img/brands-header-image.jpg);
+        url(../../img/img/brands-header-image.jpg);
         background-position: center;
         background-size: cover;
         padding: 150px 0;

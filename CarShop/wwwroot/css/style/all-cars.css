@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto' !important;
+}
+
+div.header {
+    text-align: center;
+    padding: 180px;
+    background:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../../img/img/header-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.header h1 {
+    color: white;
+    font-size: 4rem;
+    text-shadow: 4px 4px 15px black;
+}
+
+aside#filter {
+    float: left;
+    position: relative;
+    top: 0px;
+    bottom: 0px;
+    background-color: #F0F0F0;
+}
+
+#filter h3 {
+    background-color: #001E50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+#filter h3 svg {
+    height: 30px;
+    margin-right: 10px;
+}
+
+#filters-area {
+    display: none;
+}
+
+.group-title {
+    background-color: #E8E8E8;
+    margin: 0;
+    padding: 10px 30px;
+}
+
+.group-title svg {
+    margin-right: 10px;
+}
+
+.two-params-filter div {
+    padding: 15px;
+    background-color: #F0F0F0;
+}
+
+.two-params-filter div input,
+.two-params-filter div span,
+.two-params-filter div a {
+    vertical-align: middle;
+}
+
+.two-params-filter div input {
+    width: 70px;
+    margin: 0;
+    border-radius: 0px;
+    border: 1px solid #959595;
+}
+
+.two-params-filter div input:focus {
+    outline: none;
+}
+
+.two-params-filter div span{
+    font-size: 150%;
+    padding: 0 5px;
+}
+
+.two-params-filter div a {
+    text-decoration: none;
+    color: white;
+    background-color: #001E50;
+    padding: 5px 15px;
+    margin-left: 10px;
+    border: 2px solid #001E50;
+    transition: 300ms ease;
+}
+
+.two-params-filter div a:hover {
+    background-color: transparent;
+    color: #001E50;
+}
+
+.sth-type div.group-elements {
+    background-color: #F0F0F0;
+    padding: 5px 0;
+}
+
+.sth-type div.group-el {
+    margin: 10px 0;
+}
+
+.sth-type div.group-el:hover {
+    color: #003fac;
+}
+
+.sth-type div.group-el .line {
+    padding: 5px;
+    margin: 0;
+    background-color: #001E50;
+    transition: 300ms ease;
+}
+
+.sth-type div.group-el a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    padding: 5px 30px;
+    display: inline-block;
+}
+
+#sort {
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 22px 0;
+    background-color: #F0F0F0;
+}
+
+#sort .sort-criteria {
+    margin: 0 50px;
+    color: #737373;
+}
+
+.sort-criteria a,
+.sort-criteria span {
+    margin: 0 10px;
+}
+
+.sort-criteria a {
+    text-decoration: none;
+    color: #737373;
+}
+
+.sort-criteria a:hover {
+    color: #001E50;
+}
+
+.sort-criteria a svg{
+    height: 20px;
+}
+
+.cars {
+    text-align: center;
+    padding: 15px;
+}
+
+.car {
+    color: white;
+    padding: 20px;
+    display: inline-block;
+    text-align: left;
+    height: 380px;
+    width: 480px;
+    position: relative;
+    margin: 15px;
+}
+
+.car .actions {
+    position: absolute;
+    bottom: 15px;
+    margin: 10px;
+}
+
+.car .actions {
+    font-size: 1.2rem;
+}
+
+.car .actions .details {
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    margin-right: 15px;
+    transition: 300ms ease;
+}
+
+.car .actions .details:hover {
+    color: #001E50;
+    background-color: white;
+}
+
+.car .actions .customize {
+    text-decoration: none;
+    color: #001E50;
+    border: 2px solid white;
+    background-color: white;
+    padding: 10px 15px;
+    transition: 300ms ease;
+    margin-right: 15px;
+}
+
+.car .actions .customize:hover {
+    color: white;
+    background-color: transparent;
+}
+
+.car .actions .edit {
+    text-decoration: none;
+    color: #001E50;
+    border: 2px solid white;
+    background-color: white;
+    padding: 10px 15px;
+    transition: 300ms ease;
+}
+
+.car .actions .edit:hover {
+    color: white;
+    background-color: transparent;
+}

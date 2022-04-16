@@ -9,22 +9,9 @@
 	var driveTrainTypes = (List<SelectListItem>)ViewBag.DriveTrainTypes;
 }
 
-<style>
-	#images img {
-		height: 150px;
-	}
+<link rel="stylesheet" href="~/css/style/create-edit-car-style.css">
 
-	#images div {
-		display: inline-block;
-	}
-
-	#images .remove-img-btn {
-		position: relative;
-		left: -40px;
-	}
-</style>
-
-<form method="post">
+@*<form method="post">
 	<input type="hidden" asp-for="Id" />
 	<div class="form-floating mb-3">
 		<div style="display: inline-block" class="form-group row">
@@ -44,7 +31,6 @@
 				@foreach (var url in Model.Urls)
 				{
 					@await Html.PartialAsync("_ImagesForCarEditPartial", url)
-					;
 				}
 			</div>
 		</div>
@@ -159,7 +145,113 @@
 	<div class="pt-1 mb-4">
 		<button type="submit" class="btn btn-lg btn-block">Save</button>
 	</div>
-</form>
+</form>*@
+
+<div class="main">
+	<form method="post">
+		<input asp-for="ImageUrls" type="hidden" id="add-img-urls" />
+		<div class="profile-image">
+			<img src="@Model.ProfileImageUrl">
+			<div class="add-url">
+				<p>Profile image</p>
+				<input asp-for="ProfileImageUrl" type="text" placeholder="Enter url address...">
+				<a href="#">Add</a>
+			</div>
+		</div>
+
+		<div class="right">
+			<div class="parameters">
+				<div class="line-1">
+					<div class="param">
+						<p>Brand</p>
+						<select asp-for="BrandId" asp-items="brands">
+						</select>
+					</div>
+					<div class="param">
+						<p>Model</p>
+						<input asp-for="Model" type="text">
+					</div>
+					<div class="param">
+						<p>Release Year</p>
+						<input asp-for="ReleaseYear" type="text">
+					</div>
+					<div class="param">
+						<p>Coupe Type</p>
+						<select asp-for="CoupeTypeId" asp-items="coupeTypes">
+						</select>
+					</div>
+				</div>
+				<div class="line-2">
+					<div class="param">
+						<p>Height</p>
+						<input asp-for="Heigth" type="text">
+					</div>
+					<div class="param">
+						<p>Width</p>
+						<input asp-for="Width" type="text">
+					</div>
+					<div class="param">
+						<p>Length</p>
+						<input asp-for="Length" type="text">
+					</div>
+					<div class="param">
+						<p>Weight</p>
+						<input asp-for="Weight" type="text">
+					</div>
+				</div>
+				<div class="line-3">
+					<div class="param">
+						<p>Engine</p>
+						<select asp-for="EngineId" asp-items="engines">
+						</select>
+					</div>
+					<div class="param">
+						<p>Fuel Consumption</p>
+						<input asp-for="FuelConsumption" type="text">
+					</div>
+					<div class="param">
+						<p>Door Config</p>
+						<select asp-for="DoorConfigId" asp-items="doorConfigs">
+						</select>
+					</div>
+					<div class="param">
+						<p>Drive Train</p>
+						<select asp-for="DriveTrainTypeId" asp-items="driveTrainTypes">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="add-url">
+					<p>Additional images</p>
+					<input type="text" placeholder="Enter url address...">
+					<a href="#">Add</a>
+				</div>
+
+				<div class="param">
+					<p>Crash Protection Level</p>
+					<input asp-for="CrashProtectionLevel" type="text">
+				</div>
+
+				<div class="param">
+					<p>Price</p>
+					<input asp-for="Price" type="text">
+				</div>
+			</div>
+		</div>
+
+		<div class="additional-images">
+			@*@foreach (var url in Model.Urls)
+			{
+				@await Html.PartialAsync("_ImagesForCarEditPartial", url)
+			}*@
+		</div>
+
+		<div class="submit">
+			<button type="submit">Save</button>
+		</div>
+	</form>
+</div>
 
 @section Scripts {
 	<partial name="_CarCreateEditScriptsPartial"/>
