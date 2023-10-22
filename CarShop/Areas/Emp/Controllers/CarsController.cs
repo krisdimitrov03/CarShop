@@ -93,6 +93,7 @@ namespace CarShop.Areas.Emp.Controllers
 
             Car car = new Car()
             {
+                Id = Guid.NewGuid(),
                 BrandId = int.Parse(returnedModel.BrandId),
                 CoupeTypeId = int.Parse(returnedModel.CoupeTypeId),
                 CrashProtectionLevel = double.Parse(returnedModel.CrashProtectionLevel),

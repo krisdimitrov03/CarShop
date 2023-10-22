@@ -1,0 +1,336 @@
+{
+  "Users": [
+    {
+      "Id": "74e984be-e61f-4f85-b561-364afb690f7c",
+      "UserName": "krisitoo10@gmail.com",
+      "NormalizedUserName": "KRISITOO10@GMAIL.COM",
+      "Email": "krisitoo10@gmail.com",
+      "NormalizedEmail": "KRISITOO10@GMAIL.COM",
+      "EmailConfirmed": 1,
+      "PasswordHash": "AQAAAAEAACcQAAAAEHnGYOVeplvYuuXebK2FJtD3fvzSh6DWpngvfpLYht9AMS1Sdg1JnMEFjjPmbi8InQ==",
+      "FirstName": "Kristian",
+      "LastName": "Dimitrov"
+    },
+    {
+      "Id": "e5e941a9-af4a-44cd-a64a-c63f0c569898",
+      "UserName": "mishocekov@gmail.com",
+      "NormalizedUserName": "MISHOCEKOV@GMAIL.COM",
+      "Email": "mishocekov@gmail.com",
+      "NormalizedEmail": "MISHOCEKOV@GMAIL.COM",
+      "EmailConfirmed": 1,
+      "PasswordHash": "AQAAAAEAACcQAAAAEF4kWvNj/0ppjSYmY7AUaEfTPOKo5pb3nNXE4joobQ4Ytuxq6fR1/LUIgI/A+tkWnw==",
+      "FirstName": "Mihail",
+      "LastName": "Cekov"
+    },
+    {
+      "Id": "8fd7d7a0-a857-4a8b-8a5a-2b10b0922af0",
+      "UserName": "ivan.dimov@abv.bg",
+      "NormalizedUserName": "IVAN.DIMOV@ABV.BG",
+      "Email": "ivan.dimov@abv.bg",
+      "NormalizedEmail": "IVAN.DIMOV@ABV.BG",
+      "EmailConfirmed": 1,
+      "PasswordHash": "AQAAAAEAACcQAAAAEOy8IRthkKGKehXnsS7CRCB3hpACH8kNEzdKQ3B4HFEhG1tlCwhr0BWh7C4WTPXtpw==",
+      "FirstName": "Ivan",
+      "LastName": "Dimov"
+    }
+  ],
+  "Roles": [
+    {
+      "Id": "2a14714f-dc1e-4459-bfc9-0a52a512272c",
+      "Name": "Administrator",
+      "NormalizedName": "ADMINISTRATOR"
+    },
+    {
+      "Id": "08da3cfa-4694-468f-a746-8acf43b8715a",
+      "Name": "Employee",
+      "NormalizedName": "EMPLOYEE"
+    }
+  ],
+  "UsersRoles": [
+    {
+      "UserId": "74e984be-e61f-4f85-b561-364afb690f7c",
+      "RoleId": "2a14714f-dc1e-4459-bfc9-0a52a512272c"
+    },
+    {
+      "UserId": "e5e941a9-af4a-44cd-a64a-c63f0c569898",
+      "RoleId": "08da3cfa-4694-468f-a746-8acf43b8715a"
+    }
+  ],
+  "Brands": [
+    {
+      "Name": "Volkswagen"
+    },
+    {
+      "Name": "Bugatti"
+    },
+    {
+      "Name": "Bentley"
+    },
+    {
+      "Name": "Lamborghini"
+    },
+    {
+      "Name": "Porsche"
+    },
+    {
+      "Name": "Seat"
+    },
+    {
+      "Name": "Skoda"
+    },
+    {
+      "Name": "Audi"
+    }
+  ],
+  "Colors": [
+    {
+      "Name": "Black"
+    },
+    {
+      "Name": "White"
+    },
+    {
+      "Name": "Blue"
+    },
+    {
+      "Name": "Red"
+    },
+    {
+      "Name": "Green"
+    },
+    {
+      "Name": "Yellow"
+    },
+    {
+      "Name": "Grey"
+    },
+    {
+      "Name": "Orange"
+    }
+  ],
+  "CoupeTypes": [
+    {
+      "Name": "Sedan"
+    },
+    {
+      "Name": "Combi"
+    },
+    {
+      "Name": "Hatchback"
+    },
+    {
+      "Name": "Coupe"
+    }
+  ],
+  "DoorConfigs": [
+    {
+      "Name": "2/3"
+    },
+    {
+      "Name": "4/5"
+    }
+  ],
+  "DriveTrainTypes": [
+    {
+      "Name": "FWD"
+    },
+    {
+      "Name": "AWD"
+    },
+    {
+      "Name": "RWD"
+    }
+  ],
+  "Engines": [
+    {
+      "Displacement": "1.9",
+      "EngineTypeId": 1,
+      "HorsePower": 110,
+      "CilinderConfig": 4,
+      "Turbo": true
+    },
+    {
+      "Displacement": "1.8",
+      "EngineTypeId": 2,
+      "HorsePower": 150,
+      "CilinderConfig": 4,
+      "Turbo": true
+    },
+    {
+      "Displacement": "2.5",
+      "EngineTypeId": 3,
+      "HorsePower": 140,
+      "CilinderConfig": 5,
+      "Turbo": true
+    },
+    {
+      "Displacement": "3.0",
+      "EngineTypeId": 4,
+      "HorsePower": 180,
+      "CilinderConfig": 6,
+      "Turbo": true
+    },
+    {
+      "Displacement": "4.2",
+      "EngineTypeId": 5,
+      "HorsePower": 300,
+      "CilinderConfig": 8,
+      "Turbo": true
+    },
+    {
+      "Displacement": "8.0",
+      "EngineTypeId": 6,
+      "HorsePower": 1150,
+      "CilinderConfig": 16,
+      "Turbo": true
+    },
+    {
+      "Displacement": "6.3",
+      "EngineTypeId": 7,
+      "HorsePower": 420,
+      "CilinderConfig": 12,
+      "Turbo": false
+    },
+    {
+      "Displacement": "6.0",
+      "EngineTypeId": 8,
+      "HorsePower": 550,
+      "CilinderConfig": 10,
+      "Turbo": true
+    },
+    {
+      "Displacement": "7.2",
+      "EngineTypeId": 9,
+      "HorsePower": 735,
+      "CilinderConfig": 12,
+      "Turbo": false
+    },
+    {
+      "Displacement": "2.9",
+      "EngineTypeId": 10,
+      "HorsePower": 600,
+      "CilinderConfig": 6,
+      "Turbo": true
+    },
+    {
+      "Displacement": "7.0",
+      "EngineTypeId": 11,
+      "HorsePower": 463,
+      "CilinderConfig": 12,
+      "Turbo": false
+    },
+    {
+      "Displacement": "5.0",
+      "EngineTypeId": 12,
+      "HorsePower": 350,
+      "CilinderConfig": 12,
+      "Turbo": true
+    }
+  ],
+  "EngineTypes": [
+    {
+      "Name": "1.9 TDI",
+      "FuelTypeId": 1
+    },
+    {
+      "Name": "1.8 Turbo",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "2.5 TDI",
+      "FuelTypeId": 1
+    },
+    {
+      "Name": "3.0 TDI",
+      "FuelTypeId": 1
+    },
+    {
+      "Name": "4.2 TFSI",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "8.0 W16",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "6.3 FSI",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "6.0 LV10",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "7.2 LV12",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "2.9 B6",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "7.0 V12",
+      "FuelTypeId": 2
+    },
+    {
+      "Name": "5.0 TDI",
+      "FuelTypeId": 1
+    }
+  ],
+  "Extras": [
+    {
+      "Name": "Keyless lock",
+      "Price": 400.00
+    },
+    {
+      "Name": "Hatch",
+      "Price": 350.00
+    },
+    {
+      "Name": "Android/IOS navigation",
+      "Price": 150.00
+    },
+    {
+      "Name": "BOSE Stereo",
+      "Price": 500.00
+    },
+    {
+      "Name": "Vented seats",
+      "Price": 600.00
+    },
+    {
+      "Name": "VW merchandise",
+      "Price": 10.00
+    },
+    {
+      "Name": "Leather seats",
+      "Price": 800.00
+    },
+    {
+      "Name": "Tinted back windows",
+      "Price": 500.00
+    }
+  ],
+  "FuelTypes": [
+    {
+      "Name": "Diesel"
+    },
+    {
+      "Name": "Gasoline"
+    }
+  ],
+  "TransmissionTypes": [
+    {
+      "Name": "Manual",
+      "NumberOfGears": 6
+    },
+    {
+      "Name": "Automatic",
+      "NumberOfGears": 7
+    },
+    {
+      "Name": "DSG",
+      "NumberOfGears": 8
+    }
+  ]
+}

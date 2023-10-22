@@ -1,10 +1,9 @@
 using CarShop.Core.Constants;
 using CarShop.Infrastructure.Data;
 using CarShop.Infrastructure.Data.Identity;
-using CarShop.Infrastructure.Data.Repositories;
+using CarShop.Infrastructure.Seeders;
 using CarShop.ModelBinders;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +13,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAuthentication()
-    .AddFacebook(options =>
-    {
-        options.AppId = builder.Configuration.GetValue<string>("Facebook:AppId");
-        options.AppSecret = builder.Configuration.GetValue<string>("Facebook:AppSecret");
-    });
+builder.Services.AddAuthentication();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
@@ -60,5 +54,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+app.SeedData();
 
 app.Run();

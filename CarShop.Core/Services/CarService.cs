@@ -393,12 +393,12 @@ namespace CarShop.Core.Services
 
             return (new CarCardViewModel()
             {
-                Id = mostSaledCar.Id.ToString(),
-                Brand = mostSaledCar.Brand.Name,
-                Model = mostSaledCar.Model,
-                ImageUrl = mostSaledCar.Images
+                Id = mostSaledCar == null ? "" : mostSaledCar.Id.ToString(),
+                Brand = mostSaledCar == null ? "" : mostSaledCar.Brand.Name,
+                Model = mostSaledCar == null ? "" : mostSaledCar.Model,
+                ImageUrl = mostSaledCar == null ? "" : mostSaledCar.Images
                 .FirstOrDefault(i => i.IsProfile).ImageUrl,
-                Price = mostSaledCar.Price.ToString()
+                Price = mostSaledCar == null ? "" : mostSaledCar.Price.ToString()
             }, count);
         }
     }
