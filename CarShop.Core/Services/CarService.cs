@@ -4,6 +4,7 @@ using CarShop.Infrastructure.Data;
 using CarShop.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 #pragma warning disable CS8603 // Possible null reference return.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
@@ -310,7 +311,7 @@ namespace CarShop.Core.Services
                 car.FuelConsumption = double.Parse(returnedModel.FuelConsumption);
                 car.EngineId = int.Parse(returnedModel.EngineId);
                 car.DriveTrainTypeId = int.Parse(returnedModel.DriveTrainTypeId);
-                car.Price = decimal.Parse(returnedModel.Price);
+                car.Price = decimal.Parse(returnedModel.Price, CultureInfo.InvariantCulture);
 
                 repo.DeleteRange(car.Images);
 

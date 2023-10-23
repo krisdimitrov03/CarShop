@@ -1,6 +1,7 @@
 ﻿using CarShop.Core.Contracts;
 using CarShop.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace CarShop.Areas.Admin.Controllers
 {
@@ -26,7 +27,8 @@ namespace CarShop.Areas.Admin.Controllers
             var employees = await userService.GetEmployees();
             var clients = await userService.GetClients();
             var totalIncome = orders
-                .Select(o => decimal.Parse(o.Price))
+                .Select(o => o.Price)
+                .Select(o => decimal.Parse(o, CultureInfo.InvariantCulture))
                 .Sum();
 
             var (mostSaledCar, count) = await carService.GetMostSaledCar();
